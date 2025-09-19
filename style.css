@@ -103,8 +103,8 @@ main {
 
 .board {
   padding: 40px;
-  width: 750px;
-  height: 500px;
+  width: 800px;
+  height: 672px;
   box-shadow: 1px 1px 1px 2px #13073414;
 }
 .my-tasks,
@@ -118,12 +118,12 @@ p {
 }
 
 .my-tasks button {
-
+  position: relative;
   right: -8px;
   background-color: #ff5f26;
   color: #ffffff;
   font-size: 16px;
-  padding: 12px 15px 12px 15px;
+  padding: 10px 15px 10px 18px;
   border-radius: 60px;
   border-style: none;
 }
@@ -135,6 +135,7 @@ img {
   top: 4px;
 }
 .sb button {
+  padding: 10px 14px 10px 14px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -148,7 +149,7 @@ img {
 .sb img {
   position: relative;
   top: 0px;
-  right: -7px;
+  left: 0;
   width: 24px;
   height: 24px;
 }
@@ -203,4 +204,15 @@ img {
   font-size: 14px;
   background-color: #ffebd3;
   color: #ff5f26;
+}
+.subtask{
+  margin-top: 10px;
+  height: 224px;
+  background-color: #F5F5F5;
+  border-radius: 8px;
+  padding: 16px;
+}
+.subtask div{
+  display: flex;
+  justify-content: space-between;
 }
