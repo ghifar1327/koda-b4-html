@@ -1,0 +1,206 @@
+* {
+  font-family: Poppins, Arial, Helvetica, sans-serif;
+}
+
+/* header{
+    display: flex;
+    justify-content: center;
+} */
+/* header > div {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  width: 1280px;
+  height: 48px;
+  left: 80px;
+  top: 12px;
+}
+
+header span:first-child {
+  display: inline-block;
+  width: 1000px;
+}
+header span:nth-child(2) {
+  display: flex;
+  align-items: center;
+}
+
+header span:nth-child(3) {
+  margin-left: 14px;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  width: 48px;
+  border: 2px solid #ccced2;
+  border-radius: 50%;
+}
+header span:nth-child(3) img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 13%;
+  top: 1px;
+}
+header span:first-child img {
+  width: 125px;
+  height: 28px;
+}
+header span:nth-child(4) {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+header span:nth-child(5) {
+  display: flex;
+  align-items: center;
+}
+header span:nth-child(5) img {
+  display: flex;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+} */
+
+header {
+  display: flex;
+  justify-content: center;
+  height: 48px;
+  margin-top: 40px;
+}
+.navbar {
+  width: 1280px;
+  display: flex;
+  justify-content: space-between;
+}
+.navbar div:last-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.navbar div:last-child p:nth-child(2) {
+  border: 1px solid #ccced2;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+}
+.navbar div:last-child p:nth-child(2) img {
+  position: relative;
+  left: 7px;
+  top: 6px;
+  height: 36px;
+  width: 36px;
+}
+.navbar div:last-child p:nth-child(3) img {
+  width: 12px;
+  height: 10px;
+}
+main {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.board {
+  padding: 40px;
+  width: 750px;
+  height: 500px;
+  box-shadow: 1px 1px 1px 2px #13073414;
+}
+.my-tasks,
+.sb {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+p {
+  margin: 0;
+}
+
+.my-tasks button {
+
+  right: -8px;
+  background-color: #ff5f26;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 12px 15px 12px 15px;
+  border-radius: 60px;
+  border-style: none;
+}
+
+.my-tasks,
+img {
+  position: relative;
+  left: -8px;
+  top: 4px;
+}
+.sb button {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #fff;
+  color: #ff5f26;
+  height: 44px;
+  width: 136px;
+  border: 1px solid #ff5f26;
+  border-radius: 50px;
+}
+.sb img {
+  position: relative;
+  top: 0px;
+  right: -7px;
+  width: 24px;
+  height: 24px;
+}
+
+.main-chck {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.main-chck div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.main-chck label > input[type="checkbox"] {
+  display: none;
+}
+.main-chck label > input[type="checkbox"]:checked + span {
+  width: 28px;
+  height: 28px;
+  display: inline-block;
+  background-color: #ff5f26;
+  border-radius: 50%;
+  position: relative;
+}
+
+.main-chck label > input[type="checkbox"]:checked + span::after {
+  content: "✓";
+  position: relative;
+  right: -7px;
+  width: 25px;
+  height: 25px;
+  transform: translate(-50% -50%);
+  background-size: contain;
+}
+.main-chck label > input[type="checkbox"] + span {
+  background-color: #ffff;
+  border: 1px solid #ccced2;
+  width: 28px;
+  height: 28px;
+  display: inline-block;
+  border-radius: 50px;
+  margin: 0 14px 0 0;
+}
+
+.tanggal {
+  padding: 8px 12px 8px 12px;
+  text-align: center;
+  border: 1px solid #ff5f26;
+  border-radius: 50px;
+  margin-left: 16px;
+  font-size: 14px;
+  background-color: #ffebd3;
+  color: #ff5f26;
+}
