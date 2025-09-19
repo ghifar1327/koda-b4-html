@@ -218,3 +218,31 @@ img {
   display: flex;
   justify-content: space-between;
 }
+.options{
+  background-color: #fff;
+  top: 360px;
+  padding: 24px;
+  width: 189px;
+  height: 108px;
+  border: 1px solid #CCCED2;
+  border-radius: 8px;
+  position: absolute;
+  z-index: 1;  
+}
+.options div{
+  margin-top: 12px;
+  margin-left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.options img{
+  width: 24px;
+  height: 24px;
+  top:0;
+} 
+
+.options p{
+  font-size: 20px;
+}
