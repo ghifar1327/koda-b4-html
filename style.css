@@ -1,8 +1,8 @@
 * {
   font-family: Poppins, Arial, Helvetica, sans-serif;
 }
-body{
-  background-color: #F5F5F5;
+body {
+  background-color: #f5f5f5;
 }
 
 /* header{
@@ -182,14 +182,14 @@ img {
 
 .main-chck label > input[type="checkbox"]:checked + span::after {
   content: "✓";
+  color: #fff;
   position: relative;
   right: -7px;
-  width: 25px;
-  height: 25px;
+  width: 28px;
+  height: 28px;
   transform: translate(-50% -50%);
   background-size: contain;
 }
-
 
 .main-chck label > input[type="checkbox"] + span {
   background-color: #ffff;
@@ -202,9 +202,10 @@ img {
 }
 
 .tanggal {
-  padding: 8px 12px 8px 12px;
+  padding: 8px 10px 8px 10px;
   text-align: center;
   border: 1px solid #ff5f26;
+  border-style: none;
   border-radius: 50px;
   margin-left: 16px;
   font-size: 14px;
@@ -222,18 +223,18 @@ img {
   display: flex;
   justify-content: space-between;
 }
-.options{
+.options {
   background-color: #fff;
   top: 360px;
   padding: 24px;
   width: 189px;
   height: 108px;
-  border: 1px solid #CCCED2;
+  border: 1px solid #ccced2;
   border-radius: 8px;
   position: absolute;
-  z-index: 1;  
+  z-index: 1;
 }
-.options div{
+.options div {
   margin-top: 12px;
   margin-left: 12px;
   display: flex;
@@ -241,20 +242,45 @@ img {
   gap: 12px;
 }
 
-.options img{
+.options img {
   width: 24px;
   height: 24px;
-  top:0;
-} 
+  top: 0;
+}
 
-.options p{
+.options p {
   font-size: 20px;
 }
 
-.promp{
+.promp {
   position: absolute;
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
   height: 108px;
   width: 100%;
   top: 304px;
+}
+
+.option-short {
+  background-color: #fff;
+  position: relative;
+  z-index: 1;
+  height: 144px;
+  width: 300px;
+  border: 1px solid #ccced2;
+  border-radius: 8px;
+  right: -450px;
+  top: -169px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.option-short div {
+  display: flex;
+  justify-content: space-between;
+}
+.option-short input {
+  accent-color: #ff5f26;
+  width: 20px;
 }
