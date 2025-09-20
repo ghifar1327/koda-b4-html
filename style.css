@@ -162,11 +162,12 @@ img {
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
+  
 }
 .main-chck div:first-child {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 0px;
 }
 .main-chck label > input[type="checkbox"] {
   display: none;
