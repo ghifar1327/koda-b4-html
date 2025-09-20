@@ -1,6 +1,9 @@
 * {
   font-family: Poppins, Arial, Helvetica, sans-serif;
 }
+body{
+  background-color: #F5F5F5;
+}
 
 /* header{
     display: flex;
@@ -102,10 +105,11 @@ main {
 }
 
 .board {
+  background-color: #fff;
   padding: 40px;
   width: 800px;
   height: 672px;
-  box-shadow: 1px 1px 1px 2px #13073414;
+  box-shadow: 1px 1px 1px 1px #13073414;
 }
 .my-tasks,
 .sb {
@@ -245,4 +249,12 @@ img {
 
 .options p{
   font-size: 20px;
+}
+
+.promp{
+  position: absolute;
+  background-color: #F5F5F5;
+  height: 108px;
+  width: 100%;
+  top: 304px;
 }
