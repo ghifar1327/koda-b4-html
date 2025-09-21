@@ -5,66 +5,6 @@ body {
   background-color: #f5f5f5;
 }
 
-/* header{
-    display: flex;
-    justify-content: center;
-} */
-/* header > div {
-  margin-top: 40px;
-  display: flex;
-  justify-content: center;
-  width: 1280px;
-  height: 48px;
-  left: 80px;
-  top: 12px;
-}
-
-header span:first-child {
-  display: inline-block;
-  width: 1000px;
-}
-header span:nth-child(2) {
-  display: flex;
-  align-items: center;
-}
-
-header span:nth-child(3) {
-  margin-left: 14px;
-  display: flex;
-  align-items: center;
-  height: 48px;
-  width: 48px;
-  border: 2px solid #ccced2;
-  border-radius: 50%;
-}
-header span:nth-child(3) img {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  left: 13%;
-  top: 1px;
-}
-header span:first-child img {
-  width: 125px;
-  height: 28px;
-}
-header span:nth-child(4) {
-  margin-left: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-header span:nth-child(5) {
-  display: flex;
-  align-items: center;
-}
-header span:nth-child(5) img {
-  display: flex;
-  align-items: center;
-  width: 24px;
-  height: 24px;
-} */
-
 header {
   display: flex;
   justify-content: center;
@@ -98,10 +38,23 @@ header {
   width: 12px;
   height: 10px;
 }
+.navbar div:last-child p:last-child img {
+  width: 40px;
+  height: 40px;
+}
 main {
   display: flex;
   justify-content: center;
   margin-top: 40px;
+}
+.main {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+.main:last-child {
+  position: relative;
+  top: 0;
 }
 
 .board {
@@ -111,8 +64,17 @@ main {
   height: 672px;
   box-shadow: 1px 1px 1px 1px #13073414;
 }
+
+.board-c1{
+  background-color: #fff;
+  padding: 40px 40px 1px 40px;
+  width: 800px;
+  height: 186px;
+  box-shadow: 1px 1px 1px 1px #13073414;
+}
 .my-tasks,
 .sb {
+  margin-top: 16px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -127,9 +89,13 @@ p {
   background-color: #ff5f26;
   color: #ffffff;
   font-size: 16px;
-  padding: 10px 15px 10px 18px;
+  padding: 5px 15px 12px 18px;
   border-radius: 60px;
   border-style: none;
+}
+.my-tasks button > img {
+  position: relative;
+  top: 5px;
 }
 
 .my-tasks,
@@ -162,7 +128,6 @@ img {
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
-  
 }
 .main-chck div:first-child {
   display: flex;
@@ -203,6 +168,7 @@ img {
 }
 
 .tanggal {
+  display: inline;
   padding: 8px 10px 8px 10px;
   text-align: center;
   border: 1px solid #ff5f26;
@@ -254,11 +220,11 @@ img {
 }
 
 .promp {
-  position: absolute;
-  background-color: #f5f5f5;
-  height: 108px;
-  width: 100%;
-  top: 304px;
+ display: flex;
+ justify-content: center;
+}
+.promp>div{
+  width: 800px;
 }
 
 .option-short {
@@ -284,4 +250,192 @@ img {
 .option-short input {
   accent-color: #ff5f26;
   width: 20px;
+}
+footer {
+  width: 100%;
+  bottom: 40px;
+}
+
+@media (max-width: 426px) {
+  .navbar div:last-child p:nth-child(3) {
+    display: none;
+  }
+  .navbar div:first-child {
+    margin-left: 20px;
+  }
+  .navbar div:last-child p:last-child img {
+    width: 30px;
+    height: 30px;
+  }
+  .navbar div:last-child p:first-child {
+    position: relative;
+    right: -12px;
+  }
+  .board {
+    padding: 10px;
+    height: 800px;
+  }
+  .board-c1{
+    padding: 10px;
+  }
+  
+  .my-tasks:first-child p {
+    margin-top: 5px;
+  }
+  .my-tasks div:first-child {
+    width: 160px;
+  }
+  .my-tasks div:first-child p:last-child {
+    font-size: 12px;
+  }
+  .my-tasks div:nth-child(2) button {
+    width: 110px;
+    font-size: 10px;
+    padding: 5px 8px 5px 12px;
+  }
+  .my-tasks div:nth-child(2) img {
+    width: 10px;
+    height: 10px;
+    position: relative;
+    top: 1px;
+  }
+  .sb {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .sb div:first-child p {
+    position: relative;
+    top: -5px;
+  }
+  .sb div:nth-child(2) button {
+    width: 100px;
+    height: 20px;
+    font-size: 10px;
+  }
+  .sb div:nth-child(2) img {
+    width: 8px;
+    height: 8px;
+    position: relative;
+    top: 1px;
+  }
+  .main-chck {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+  }
+  .main-chck div:first-child {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+  }
+  .main-chck label > input[type="checkbox"] {
+    display: none;
+  }
+  .main-chck label > input[type="checkbox"]:checked + span {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background-color: #ff5f26;
+    border-radius: 50%;
+    position: relative;
+  }
+
+  .main-chck label > input[type="checkbox"]:checked + span::after {
+    content: "✓";
+    color: #fff;
+    position: relative;
+    top: -2px;
+    right: -2px;
+    width: 15px;
+    height: 15px;
+    transform: translate(-50% -50%);
+    background-size: contain;
+  }
+
+  .main-chck label > input[type="checkbox"] + span {
+    background-color: #ffff;
+    border: 1px solid #ccced2;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    border-radius: 50px;
+    margin: 0 14px 0 0;
+  }
+
+  .tanggal {
+    font-size: 10px;
+  }
+  .tanggal:last-child {
+    display: inline-block;
+    position: relative;
+    left: -15px;
+    padding: 8px 10px 8px 10px;
+    text-align: center;
+    border: 1px solid #ff5f26;
+    border-style: none;
+    border-radius: 50px;
+    margin-left: 16px;
+    font-size: 10px;
+    background-color: #ffebd3;
+    color: #ff5f26;
+  }
+  .options {
+    background-color: #fff;
+    top: 360px;
+    padding: 12px;
+    width: 140px;
+    height: 60px;
+    border: 1px solid #ccced2;
+    border-radius: 8px;
+    position: absolute;
+    z-index: 1;
+  }
+  .options div {
+    margin-top: 12px;
+    margin-left: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .options img {
+    width: 12px;
+    height: 12px;
+    top: 0;
+  }
+
+  .options p {
+    font-size: 10px;
+  }
+  .option-short {
+  background-color: #fff;
+  position: relative;
+  z-index: 1;
+  height: 70px;
+  width: 150px;
+  border: 1px solid #ccced2;
+  border-radius: 8px;
+  right: -110px;
+  top: -190px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.option-short div {
+  display: flex;
+  justify-content: space-between;
+}
+.option-short input {
+  accent-color: #ff5f26;
+  width: 10px;
+}
+.option-short label{
+  font-size: 10px;
+}
+
 }
