@@ -65,22 +65,42 @@ main {
   box-shadow: 1px 1px 1px 1px #13073414;
 }
 
-.board-c1{
+.board-c1 {
   background-color: #fff;
   padding: 40px 40px 1px 40px;
   width: 800px;
   height: 186px;
   box-shadow: 1px 1px 1px 1px #13073414;
 }
-.my-tasks,
+
+.my-tasks {
+  display: flex;
+  justify-content: space-between;
+}
+.my-tasks div:first-child p:first-child {
+  color: #ff5f26;
+}
+.my-tasks div:first-child p:nth-child(2) {
+  font-size: 24px;
+}
+.my-tasks div:first-child p:last-child {
+  color: #7a7f83;
+}
+
+p {
+  margin: 0;
+}
 .sb {
   margin-top: 16px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-p {
-  margin: 0;
+.sb div:first-child {
+  margin-top: 15px;
+}
+.sb div:first-child p {
+  color: #7a7f83;
 }
 
 .my-tasks button {
@@ -98,14 +118,13 @@ p {
   top: 5px;
 }
 
-.my-tasks,
-img {
+/* img {
   position: relative;
   left: -8px;
   top: 4px;
-}
+} */
 .sb button {
-  padding: 10px 14px 10px 14px;
+  padding: 10px 12px 10px 14px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -167,6 +186,22 @@ img {
   margin: 0 14px 0 0;
 }
 
+.b-grey {
+  color: #7a7f83;
+  border: 1px solid #ccced2;
+}
+.d-team {
+  color: #7a7f83;
+  margin-top: 8px;
+}
+.main-chck div:nth-child(2) img {
+  width: 24px;
+  height: 24px;
+}
+/* .main-chck div:first-child div:last-child div:last-child{
+color: #7a7f83;
+margin-top: 8px;
+} */
 .tanggal {
   display: inline;
   padding: 8px 10px 8px 10px;
@@ -189,6 +224,20 @@ img {
 .subtask div {
   display: flex;
   justify-content: space-between;
+}
+.subtask-b{
+  font-size: 14px;
+    padding: 6px 6px 6px 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  color: #ff5f26;
+  height: 30px;
+  width: 50px;
+  gap: 6px;
+  border: 1px solid #ff5f26;
+  border-radius: 50px;
 }
 .options {
   background-color: #fff;
@@ -220,10 +269,10 @@ img {
 }
 
 .promp {
- display: flex;
- justify-content: center;
+  display: flex;
+  justify-content: center;
 }
-.promp>div{
+.promp > div {
   width: 800px;
 }
 
@@ -275,10 +324,10 @@ footer {
     padding: 10px;
     height: 800px;
   }
-  .board-c1{
+  .board-c1 {
     padding: 10px;
   }
-  
+
   .my-tasks:first-child p {
     margin-top: 5px;
   }
@@ -411,31 +460,30 @@ footer {
     font-size: 10px;
   }
   .option-short {
-  background-color: #fff;
-  position: relative;
-  z-index: 1;
-  height: 70px;
-  width: 150px;
-  border: 1px solid #ccced2;
-  border-radius: 8px;
-  right: -110px;
-  top: -190px;
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+    background-color: #fff;
+    position: relative;
+    z-index: 1;
+    height: 70px;
+    width: 150px;
+    border: 1px solid #ccced2;
+    border-radius: 8px;
+    right: -110px;
+    top: -190px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 
-.option-short div {
-  display: flex;
-  justify-content: space-between;
-}
-.option-short input {
-  accent-color: #ff5f26;
-  width: 10px;
-}
-.option-short label{
-  font-size: 10px;
-}
-
+  .option-short div {
+    display: flex;
+    justify-content: space-between;
+  }
+  .option-short input {
+    accent-color: #ff5f26;
+    width: 10px;
+  }
+  .option-short label {
+    font-size: 10px;
+  }
 }
