@@ -2,7 +2,7 @@
   font-family: Poppins, Arial, Helvetica, sans-serif;
 }
 body {
-  background-color: #f5f5f5;
+  background-color: bisque;
 }
 
 header {
@@ -29,8 +29,8 @@ header {
 }
 .navbar div:last-child p:nth-child(2) img {
   position: relative;
-  left: 6px;
-  top: 6px;
+  left: 4px;
+  top: 4px;
   height: 40px;
   width: 40px;
 }
@@ -321,7 +321,7 @@ footer {
   }
   .navbar div:last-child p:first-child {
     position: relative;
-    right: -12px;
+    right: -2px;
   }
   .board {
     padding: 10px;
@@ -471,7 +471,7 @@ footer {
     border: 1px solid #ccced2;
     border-radius: 8px;
     right: -110px;
-    top: -190px;
+    top: -160px;
     padding: 12px;
     display: flex;
     flex-direction: column;
@@ -488,5 +488,8 @@ footer {
   }
   .option-short label {
     font-size: 10px;
+  }
+  .board-c1{
+    height: 150px;
   }
 }
