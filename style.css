@@ -31,8 +31,8 @@ header {
   position: relative;
   left: 6px;
   top: 6px;
-  height: 36px;
-  width: 36px;
+  height: 40px;
+  width: 40px;
 }
 .navbar div:last-child p:nth-child(3) img {
   width: 12px;
