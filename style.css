@@ -29,7 +29,7 @@ header {
 }
 .navbar div:last-child p:nth-child(2) img {
   position: relative;
-  left: 7px;
+  left: 6px;
   top: 6px;
   height: 36px;
   width: 36px;
@@ -39,8 +39,10 @@ header {
   height: 10px;
 }
 .navbar div:last-child p:last-child img {
+  position: relative;
   width: 40px;
   height: 40px;
+  left: -8px;
 }
 main {
   display: flex;
@@ -52,10 +54,6 @@ main {
   justify-content: center;
   margin-top: 40px;
 }
-.main:last-child {
-  position: relative;
-  top: 0;
-}
 
 .board {
   background-color: #fff;
@@ -65,6 +63,10 @@ main {
   box-shadow: 1px 1px 1px 1px #13073414;
 }
 
+.main:last-child {
+  position: relative;
+  top: 0;
+}
 .board-c1 {
   background-color: #fff;
   padding: 40px 40px 1px 40px;
@@ -156,6 +158,15 @@ p {
 .main-chck label > input[type="checkbox"] {
   display: none;
 }
+.main-chck label > input[type="checkbox"] + span {
+  background-color: #ffff;
+  border: 1px solid #ccced2;
+  width: 28px;
+  height: 28px;
+  display: inline-block;
+  border-radius: 50px;
+  margin: 0 14px 0 0;
+}
 .main-chck label > input[type="checkbox"]:checked + span {
   width: 28px;
   height: 28px;
@@ -176,15 +187,7 @@ p {
   background-size: contain;
 }
 
-.main-chck label > input[type="checkbox"] + span {
-  background-color: #ffff;
-  border: 1px solid #ccced2;
-  width: 28px;
-  height: 28px;
-  display: inline-block;
-  border-radius: 50px;
-  margin: 0 14px 0 0;
-}
+
 
 .b-grey {
   color: #7a7f83;
