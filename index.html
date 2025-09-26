@@ -10,129 +10,328 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rancho&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- <link rel="stylesheet" href="style.css" /> -->
   </head>
-  <body>
+  <body class="p-4 bg-orange-100">
     <header>
-      <div class="navbar">
+      <div class="flex justify-between mb-10 h-6">
         <div>
-          <p><img src="assets/Logo.svg" alt="" /></p>
+          <img src="assets/Logo.svg" alt="" class="flex items-center w-40" />
         </div>
-        <div>
-          <p><img src="assets/Notification.svg" alt="" /></p>
-          <p><img src="assets/Ellipse 34.png" alt="" /></p>
-          <p>Krozeo Jupiter</p>
-          <p>
-            <img src="assets/Arrow - Down 1.png" alt="" />
-          </p>
+        <div class="flex justify-center items-center gap-1 mt-5">
+          <img src="assets/Notification.svg" alt="" />
+          <div
+            class="border border-gray-300 w-11 h-11 rounded-[50%] flex justify-center items-center"
+          >
+            <img src="assets/Ellipse 34.png" alt="" />
+          </div>
+          <p class="hidden">Krozeo Jupiter</p>
+          <img src="assets/Arrow - Down 1.png" alt="" class="w-8" />
         </div>
       </div>
     </header>
     <main>
-      <div class="board">
-        <div class="my-tasks">
+      <div class="bg-white rounded-md pt-1 pb-1">
+        <div class="flex justify-between m-5">
           <div>
-            <p>MY TASKS</p>
-            <p>To Do List</p>
-            <p>Buat list tugas harian saya</p>
+            <p class="text-orange-500 mb-2">MY TASKS</p>
+            <p class="text-3xl mb-2">To Do List</p>
+            <p class="text-gray-500 text-sm mb-2">
+              Buat list tugas harian saya
+            </p>
           </div>
-          <div>
-            <button><img src="assets/Plus.svg" alt="" />Tambah tugas</button>
-          </div>
-        </div>
-        <div class="sb">
-          <div>
-            <p>Short By</p>
-          </div>
-          <div>
-            <button>
-              By Tanggal<img src="assets/Arrow - Down 2.png" alt="" />
+          <div class="relative w-30 h-20">
+            <button
+              class="rounded-3xl bg-orange-500 flex items-center p-2 text-white h-8 text-xs"
+            >
+              <img src="assets/Plus.svg" alt="" class="w-4" />Tambah tugas
             </button>
           </div>
         </div>
-        <div class="main-chck">
+        <div class="flex justify-between items-center m-5">
           <div>
-            <div>
-              <label for="check-1">
-                <input type="checkbox" id="check-1" />
-                <span>
-                  <span></span>
-                </span>
-              </label>
-            </div>
-            <div>
-              <label for="check-1">Produk Design</label>
-              <div class="tanggal">Hari Ini</div>
-              <div class="d-team">Tugas untuk design team</div>
-            </div>
+            <p>Short By</p>
           </div>
-          <div>
-            <img src="assets/Arrow - Down 1.png" alt="" />
+          <div class="">
+            <button
+              class="rounded-3xl bg-white flex items-center p-2 text-orange-500 border h-8 text-xs gap-1"
+            >
+              <div>By Tanggal</div>
+              <img src="assets/Arrow - Down 2.png" alt="" class="w-5" />
+            </button>
           </div>
-        </div>
-        <div class="main-chck">
-          <div>
-            <div>
-              <label for="check-2">
-                <input type="checkbox" id="check-2" />
-                <span>
-                  <span></span>
-                </span>
-              </label>
-            </div>
-            <div>
-              <label for="check-1">Development</label>
-              <div class="tanggal">15 Juni 2022</div>
-            </div>
-          </div>
-          <div>
-            <img
-              src="assets/Arrow - Down 1.png"
-              alt=""
-              width="24px"
-              height="24px"
-            />
+          <div class="hidden">
+            <button
+              class="rounded-3xl bg-white flex items-center p-2 text-gray-400 border h-8 text-xs gap-1"
+            >
+              <div>By Tanggal</div>
+              <img src="assets/Arrow - Up 2.png" alt="" class="w-3" />
+            </button>
           </div>
         </div>
-        <div class="main-chck">
+        <!-- promp input -->
+
+        <div class="flex p-5 bg-gray-200 text-xs">
           <div>
+            <input type="checkbox" class="mt-2" />
+          </div>
+          <div class="ml-2">
             <div>
-              <label for="check-3">
+              <input
+                type="text"
+                placeholder="Masukan nama tugas"
+                class="mb-1 text-base"
+              />
+            </div>
+            <div>
+              <div class="flex mb-1 gap-2">
+                <img src="assets/menu.png" alt="" class="w-4" />
+                <div>Deskripsi Tugas (Optional)</div>
+              </div>
+              <div class="flex gap-2">
+                <img src="assets/Calendar.svg" alt="" class="w-4" />
+                <div>Tanggal & Waktu</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- promp input end -->
+        <div class="flex justify-between m-5">
+          <div class="flex gap-1">
+            <div>
+              <input type="checkbox" id="check-1" />
+            </div>
+            <div>
+              <div class="flex gap-1 mb-2">
+                <label for="check-1">Produk Design</label>
+                <div
+                  class="rounded-3xl bg-orange-100 flex items-center p-3 h-4 text-orange-500 gap-1 border text-xs"
+                >
+                  Hari Ini
+                </div>
+                <div class="">
+                  <img src="assets/more-vertical.png" alt="" class="" />
+                </div>
+              </div>
+              <div>Tugas untuk design team</div>
+            </div>
+          </div>
+          <div>
+            <img src="assets/Arrow - Down 1.png" alt="" class="w-6" />
+          </div>
+        </div>
+
+        <!-- ini subtask -->
+        <div class="m-5 bg-gray-200 p-5 rounded-sm">
+          <div class="flex justify-between items-center mb-5">
+            <div>
+              <p>Subtask</p>
+            </div>
+            <div>
+              <button
+                class="rounded-3xl bg-white flex items-center p-2 text-orange-500 border h-8 text-xs"
+              >
+                <img src="assets/Plus.png" alt="" class="w-3 mr-1" />
+                <div>Tambah</div>
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <div class="flex justify-between mb-2">
+              <div class="flex gap-2">
+                <div>
+                  <input type="checkbox" id="check-6" />
+                </div>
+                <div>
+                  <label for="check-6">Design Renew</label>
+                </div>
+              </div>
+              <div>
+                <img src="assets/trash.png" alt="" class="w-4" />
+              </div>
+            </div>
+            <div class="flex justify-between mb-2">
+              <div class="flex gap-2">
+                <div>
+                  <input type="checkbox" id="check-6" />
+                </div>
+                <div>
+                  <label for="check-7">Low-Fidelity design</label>
+                </div>
+              </div>
+              <div>
+                <img src="assets/trash.png" alt="" class="w-4" />
+              </div>
+            </div>
+            <div class="flex justify-between mb-2">
+              <div class="flex gap-2">
+                <div>
+                  <input type="checkbox" id="check-6" />
+                </div>
+                <div>
+                  <label for="check-4">Hight-Fidelity design</label>
+                </div>
+              </div>
+              <div>
+                <img src="assets/trash.png" alt="" class="w-4" />
+              </div>
+            </div>
+            <div class="flex justify-between">
+              <div class="flex gap-2">
+                <div>
+                  <input type="checkbox" id="check-6" />
+                </div>
+                <div>
+                  <label for="check-5">Design Guidelines</label>
+                </div>
+              </div>
+              <div>
+                <img src="assets/trash.png" alt="" class="w-4" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- SUBTASK END -->
+
+        <div class="flex justify-between m-5">
+          <div class="flex gap-1">
+            <div>
+              <input
+                type="checkbox"
+                id="check-2"
+                class="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 rounded-[50px] focus:ring-blue-500"
+              />
+            </div>
+            <div class="flex gap-2">
+              <div>
+                <label for="check-1">Development</label>
+              </div>
+              <div
+                class="rounded-3xl bg-orange-100 flex items-center p-3 h-4 text-orange-500 gap-1 border text-xs"
+              >
+                15 Juni 2022
+              </div>
+            </div>
+          </div>
+          <div>
+            <img src="assets/Arrow - Down 1.png" alt="" class="w-6" />
+          </div>
+        </div>
+        <div class="flex justify-between m-5">
+          <div class="flex gap-1">
+            <div>
+              <input type="checkbox" id="check-3" />
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <div>
+                <label for="check-1">Launching Wazwez Website</label>
+              </div>
+              <div
+                class="rounded-3xl bg-orange-100 flex items-center p-3 h-4 text-orange-500 gap-1 border text-xs"
+              >
+                20 juni Juni 2022
+              </div>
+            </div>
+          </div>
+          <div>
+            <img src="assets/Arrow - Down 1.png" alt="" class="w-6" />
+          </div>
+        </div>
+        <!-- footer end -->
+        <hr />
+        <div class="flex items-center gap-2 m-5">
+          <div class="hidden">
+            <img src="assets/Arrow - Right 2.png" alt="" class="w-3 h-3" />
+          </div>
+          <div>
+            <img src="assets/Arrow - Up 2.png" alt="" class="w-3" />
+          </div>
+          <div>Terselesaikan (3 Tugas)</div>
+        </div>
+        <!-- ============== -->
+        <div class="m-5">
+          <div class="flex justify-between mb-2">
+            <div class="flex gap-1">
+              <div>
                 <input type="checkbox" id="check-3" />
-                <span>
-                  <span></span>
-                </span>
-              </label>
+              </div>
+              <div>
+                <label for="check-1">Requirements Detail</label>
+              </div>
             </div>
             <div>
-              <label for="check-1">Launching Wazwez Website</label>
-              <div class="tanggal">20 juni Juni 2022</div>
+              <img src="assets/Arrow - Down 1.png" alt="" class="w-6" />
             </div>
           </div>
-          <div>
-            <img
-              src="assets/Arrow - Down 1.png"
-              alt=""
-              width="24px"
-              height="24px"
-            />
+          <div class="flex justify-between">
+            <div>
+              <div class="flex gap-1 mb-2">
+                <div>
+                  <input type="checkbox" id="check-3" />
+                </div>
+                <div>
+                  <label for="check-1">Backlog Teams</label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <img src="assets/Arrow - Down 1.png" alt="" class="w-6" />
+            </div>
+          </div>
+          <div class="flex justify-between">
+            <div>
+              <div class="flex gap-1 mb-2">
+                <div>
+                  <input type="checkbox" id="check-3" />
+                </div>
+                <div>
+                  <label for="check-1">Meetings White Teams</label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <img src="assets/Arrow - Down 1.png" alt="" class="w-6" />
+            </div>
           </div>
         </div>
-        <footer>
-          <div
-            style="height: 1px; background-color: black; margin-top: 268px"
-          ></div>
-          <div style="display: flex; align-items: center">
-            <div style="margin-left: 8px; margin-top: 27px">
-              <img
-                src="assets/Arrow - Right 2.png"
-                alt=""
-                style="position: relative; top: 0"
-              />Terselesaikan (3 Tugas)
-            </div>
-          </div>
-        </footer>
+        <!-- footer end -->
       </div>
     </main>
+    <div
+      class="absolute top-90 right-30 rounded-md bg-orange-100 text-sm w-35 h-20 p-4 hidden"
+    >
+      <div class="flex justify-between mb-1">
+        <img src="assets/Edit.png" alt="" class="w-5" />
+        <p>Rename Task</p>
+      </div>
+      <div class="flex gap-4">
+        <img src="assets/Delete.png" alt="" class="w-3 h-4" />
+        <p>Delete task</p>
+      </div>
+    </div>
+    <!-- by tanggal  -->
+    <div
+      class="absolute top-78 right-5 rounded-sm bg-orange-100 w-50 p-5 hidden"
+    >
+      <div class="flex justify-between mb-1">
+        <label for="tanggal">By Tanggal</label>
+        <input type="radio" id="tanggal" name="1" />
+      </div>
+      <div class="flex justify-between mb-1">
+        <label for="time">By Time</label>
+        <input type="radio" id="time" name="1" />
+      </div>
+      <div class="flex justify-between">
+        <label for="Terbaru">Terbaru</label>
+        <input type="radio" id="Terbaru" name="1" />
+      </div>
+    </div>
+    <!-- by tanggal end -->
+    <!-- check box -->
+
+    <!-- check box -->
   </body>
 </html>
