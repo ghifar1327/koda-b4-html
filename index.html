@@ -13,9 +13,9 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- <link rel="stylesheet" href="style.css" /> -->
   </head>
-  <body class="p-4 bg-orange-100">
+  <body class="p-4 bg-orange-100 xl:ml-20 xl:mr-20 font-poppins">
     <header>
-      <div class="flex justify-between mb-10 h-6">
+      <div class="flex justify-between mb-10 h-6 sm:m-5 sm:mb-5">
         <div>
           <img
             src="assets/icons/Logo.svg"
@@ -30,27 +30,30 @@
           >
             <img src="assets/icons/Ellipse 34.png" alt="" />
           </div>
-          <p class="hidden">Krozeo Jupiter</p>
+          <p class="hidden md:block">Krozeo Jupiter</p>
           <img src="assets/icons/Arrow - Down 1.png" alt="" class="w-8" />
         </div>
       </div>
     </header>
-    <main>
-      <div class="bg-white rounded-md pt-1 pb-1">
+    <main class="flex justify-center">
+      <div
+        class="border border-orange-500 bg-white rounded-lg shadow-xl pt-1 pb-1 md:mt-10 md:w-160 xl:w-200"
+      >
         <div class="flex justify-between m-5">
-          <div>
+          <div class="w-35">
             <p class="text-orange-500 mb-2">MY TASKS</p>
             <p class="text-3xl mb-2">To Do List</p>
             <p class="text-gray-500 text-sm mb-2">
               Buat list tugas harian saya
             </p>
           </div>
-          <div class="relative w-30 h-20">
+          <div>
             <button
               id="btnTambahTugas"
-              class="rounded-3xl bg-orange-500 flex items-center p-2 text-white h-8 text-xs"
+              class="rounded-3xl bg-orange-500 flex items-center p-2 text-white h-8 text-xs tracking-tighter sm:tracking-normal md:tracking-normal xl:tracking-normal 2xl:tracking-normal"
             >
-              <img src="assets/icons/Plus.svg" alt="" class="w-4" />Tambah tugas
+              <img src="assets/icons/Plus.svg" alt="" class="w-4 mr-1" />Tambah
+              tugas
             </button>
           </div>
         </div>
@@ -134,7 +137,7 @@
                   <img src="assets/icons/more-vertical.png" alt="" class="" />
                 </button>
               </div>
-              <div>Tugas untuk design team</div>
+              <div class="text-gray-400">Tugas untuk design team</div>
             </div>
           </div>
           <div id="btn-arrow1">
@@ -148,7 +151,7 @@
         </div>
 
         <!-- ini subtask -->
-        <div class="m-5 bg-gray-200 p-5 rounded-sm hidden" id="subtask">
+        <div class="m-5 bg-gray-200 p-5 rounded-md hidden" id="subtask">
           <div class="flex justify-between items-center mb-5">
             <div>
               <p>Subtask</p>
@@ -171,11 +174,7 @@
                   type="checkbox"
                   class="peer mt-1 bg-white appearance-none w-4 h-4 border-2 border-orange-500 rounded-full checked:bg-orange-500 checked:border-orange-500 checked:[background-image:url('assets/icons/checked.svg')] checked:bg-[length:70%_70%] bg-center bg-no-repeat cursor-pointer"
                 />
-                <span
-                  class="peer-checked:line-through"
-                >
-                  Design Renew
-                </span>
+                <span class="peer-checked:line-through"> Design Renew </span>
               </label>
               <img
                 src="assets/icons/trash.png"
@@ -190,9 +189,7 @@
                   type="checkbox"
                   class="peer mt-1 bg-white appearance-none w-4 h-4 border-2 border-orange-500 rounded-full checked:bg-orange-500 checked:border-orange-500 checked:[background-image:url('assets/icons/checked.svg')] checked:bg-[length:70%_70%] bg-center bg-no-repeat cursor-pointer"
                 />
-                <span
-                  class="peer-checked:line-through"
-                >
+                <span class="peer-checked:line-through">
                   Low-Fidelity design
                 </span>
               </label>
@@ -210,9 +207,7 @@
                   type="checkbox"
                   class="peer mt-1 bg-white appearance-none w-4 h-4 border-2 border-orange-500 rounded-full checked:bg-orange-500 checked:border-orange-500 checked:[background-image:url('assets/icons/checked.svg')] checked:bg-[length:70%_70%] bg-center bg-no-repeat cursor-pointer"
                 />
-                <span
-                  class="peer-checked:line-through"
-                >
+                <span class="peer-checked:line-through">
                   High-Fidelity design
                 </span>
               </label>
@@ -230,9 +225,7 @@
                   type="checkbox"
                   class="peer mt-1 bg-white appearance-none w-4 h-4 border-2 border-orange-500 rounded-full checked:bg-orange-500 checked:border-orange-500 checked:[background-image:url('assets/icons/checked.svg')] checked:bg-[length:70%_70%] bg-center bg-no-repeat cursor-pointer"
                 />
-                <span
-                  class="peer-checked:line-through"
-                >
+                <span class="peer-checked:line-through">
                   Design Guidelines
                 </span>
               </label>
@@ -279,7 +272,7 @@
                 class="mt-1 bg-white appearance-none w-4 h-4 border-2 border-orange-500 rounded-full checked:bg-orange-500 checked:border-orange-500 checked:[background-image:url('assets/icons/checked.svg')] checked:bg-[length:70%_70%] bg-center bg-no-repeat cursor-pointer"
               />
             </div>
-            <div class="flex flex-wrap gap-2">
+            <div class="flex flex-wrap gap-2 w-49 sm:w-[100%]">
               <div>
                 <label for="check-3">Launching Wazwez Website</label>
               </div>
@@ -295,7 +288,7 @@
           </div>
         </div>
         <!-- footer end -->
-        <hr />
+        <hr class="m-5 mt-10" />
         <div class="flex items-center gap-2 m-5">
           <div class="hidden">
             <img
@@ -318,7 +311,7 @@
           </div>
           <div>Terselesaikan (3 Tugas)</div>
         </div>
-<!-- ========================================================= -->
+        <!-- ========================================================= -->
         <div id="tComplete" class="m-5 hidden space-y-2">
           <div class="flex justify-between items-start">
             <label for="check-t1" class="flex gap-2 cursor-pointer">
@@ -378,9 +371,9 @@
     </main>
     <div
       id="optionRd"
-      class="absolute top-90 right-30 rounded-md bg-orange-100 text-sm w-35 h-20 p-4 hidden"
+      class="border border-orange-500 text-orange-500 absolute top-83 right-30 rounded-md bg-orange-100 text-sm w-35 h-20 p-4 hidden md:left-80 md:top-80 lg:left-120 xl:left-160"
     >
-      <div class="flex justify-between mb-1">
+      <div class="flex justify-between mb-2">
         <img src="assets/icons/Edit.png" alt="" class="w-5" />
         <p>Rename Task</p>
       </div>
@@ -392,7 +385,7 @@
     <!-- by tanggal  -->
     <div
       id="optionTanggal"
-      class="absolute top-78 right-5 rounded-sm bg-orange-100 w-50 p-5 hidden"
+      class="border border-orange-500 text-orange-500 absolute top-73 right-5 rounded-sm bg-orange-100 w-50 p-5 hidden md:right-20 md:top-83 lg:right-50 xl:right-90"
     >
       <div class="flex justify-between mb-1">
         <label for="tanggal">By Tanggal</label>
