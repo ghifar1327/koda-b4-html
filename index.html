@@ -445,6 +445,27 @@
       </div>
     </div> -->
 
+    <!-- ================================================== -->
+    <div
+      id="renameModal"
+      class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
+    >
+      <div class="bg-white p-4 rounded-md">
+        <input id="renameInput" type="text" class="border p-2 w-full mb-3" />
+        <div class="flex justify-end gap-2">
+          <button id="cancelRename" class="px-3 py-1 bg-gray-300 rounded">
+            Cancel
+          </button>
+          <button
+            id="saveRename"
+            class="px-3 py-1 bg-orange-500 text-white rounded"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+
     <script
       data-main="assets/js/main"
       src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"

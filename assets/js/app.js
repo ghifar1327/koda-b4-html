@@ -1,5 +1,7 @@
 define(["jquery"], function ($) {
   $(document).ready(() => {
+    let currentTaskId = null;
+
     // Button tambah tugas
     (() => {
       const $btn = $("#btnTambahTugas");
@@ -102,41 +104,82 @@ define(["jquery"], function ($) {
                 <div class="text-gray-400">${item.deskp}</div>
               </div>
             </div>
-            <div class="btn-arrow">
-              <button class="arrow1" data-id="${index}">
+            <div id="btn-arrow1">
+              <button id="arrow1">
                 <img src="assets/icons/Arrow - Down 1.png" alt="" class="w-6" />
               </button>
-              <button class="arrow2 hidden" data-id="${index}">
-                <img src="assets/icons/Arrow - Up 2.png" alt="" class="w-3 m-1"/>
-              </button>
-            </div>
+              <button id="arrow2" class="hidden">
+                <img src="assets/icons/Arrow - Up 2.png" alt="" class="w-3 m-1" />
+            </button>
+          </div>
           </div>
         `);
       });
     }
 
-$(document).on("click", ".btnOption", function (e) {
-  e.stopPropagation();
-  const id = $(this).data("id");
+    // Show dropdown options
+    $(document).on("click", ".btnOption", function (e) {
+      e.stopPropagation();
+      const id = $(this).data("id");
 
-  $("[id^=optionRd]").not(`#optionRd${id}`).addClass("hidden");
+      $("[id^=optionRd]").not(`#optionRd${id}`).addClass("hidden");
+      $(`#optionRd${id}`).toggleClass("hidden");
+    });
 
-  $(`#optionRd${id}`).toggleClass("hidden");
-});
+    $(document).on("click", () => {
+      $("[id^=optionRd]").addClass("hidden");
+    });
 
-$(document).on("click", () => {
-  $("[id^=optionRd]").addClass("hidden");
-});
+    $(document).on("click", "[id^=optionRd]", function (e) {
+      e.stopPropagation();
+    });
 
-$(document).on("click", "[id^=optionRd]", function (e) {
-  e.stopPropagation();
-});
+    // Rename Task
+    $(document).on("click", "[id^=reNm]", function () {
+      const id = $(this).attr("id").replace("reNm", "");
+      let data = JSON.parse(localStorage.getItem("user task")) || [];
+
+      currentTaskId = id;
+      $("#renameInput").val(data[id].taskName);
+      $("#renameModal").removeClass("hidden");
+    });
+
+    $("#cancelRename").on("click", function () {
+      $("#renameModal").addClass("hidden");
+      currentTaskId = null;
+    });
+
+    $("#saveRename").on("click", function () {
+      if (currentTaskId === null) return;
+
+      let data = JSON.parse(localStorage.getItem("user task")) || [];
+      const newName = $("#renameInput").val().trim();
+
+      if (newName !== "") {
+        data[currentTaskId].taskName = newName;
+        localStorage.setItem("user task", JSON.stringify(data));
+        renderTasks();
+      }
+
+      $("#renameModal").addClass("hidden");
+      currentTaskId = null;
+    });
+
+    // Delete Task
+    $(document).on("click", "[id^=delTs]", function () {
+      const id = $(this).attr("id").replace("delTs", "");
+      let data = JSON.parse(localStorage.getItem("user task")) || [];
+
+      if (confirm("Yakin mau hapus task ini?")) {
+        data.splice(id, 1);
+        localStorage.setItem("user task", JSON.stringify(data));
+        renderTasks();
+      }
+    });
 
     renderTasks();
   });
 });
-
-
 
 // $(document).ready(() =>{
 //   $('#btn-arrow1').on('click', (e)=>{
