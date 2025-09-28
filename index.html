@@ -50,7 +50,7 @@
           <div>
             <button
               id="btnTambahTugas"
-              class="rounded-3xl bg-orange-500 flex items-center p-2 text-white h-8 text-xs tracking-tighter sm:tracking-normal md:tracking-normal xl:tracking-normal 2xl:tracking-normal"
+              class="cursor-pointer rounded-3xl bg-orange-500 flex items-center p-2 text-white h-8 text-xs tracking-tighter sm:tracking-normal md:tracking-normal xl:tracking-normal 2xl:tracking-normal"
             >
               <img src="assets/icons/Plus.svg" alt="" class="w-4 mr-1" />Tambah
               tugas
@@ -84,39 +84,61 @@
             </div>
           </div>
         </div>
-        <!-- promp input -->
+        <!-- task input -->
         <div id="tambahTugas" class="hidden">
-          <div class="flex p-5 bg-gray-200 text-xs">
-            <div>
-              <input
-                type="checkbox"
-                class="mt-1 bg-white appearance-none w-4 h-4 border-2 border-orange-500 rounded-full checked:bg-orange-500 checked:border-orange-500 checked:[background-image:url('assets/icons/checked.svg')] checked:bg-[length:70%_70%] bg-center bg-no-repeat cursor-pointer"
-              />
-            </div>
-            <div class="ml-2">
+          <form method="get" id="form" class="flex justify-between p-5 bg-gray-200 text-xs">
+            <div class="flex">
               <div>
                 <input
-                  type="text"
-                  placeholder="Masukan nama tugas"
-                  class="mb-1 text-base"
+                  type="checkbox"
+                  class="mt-1 bg-white appearance-none w-4 h-4 border-2 border-orange-500 rounded-full checked:bg-orange-500 checked:border-orange-500 checked:[background-image:url('assets/icons/checked.svg')] checked:bg-[length:70%_70%] bg-center bg-no-repeat cursor-pointer"
                 />
               </div>
-              <div>
-                <div class="flex mb-1 gap-2">
-                  <img src="assets/icons/menu.png" alt="" class="w-4" />
-                  <div>Deskripsi Tugas (Optional)</div>
+              <div class="ml-2">
+                <div>
+                  <input
+                    id="taskName"
+                    type="text"
+                    placeholder="Masukan nama tugas"
+                    class="mb-1 text-base"
+                  />
                 </div>
-                <div class="flex gap-2">
-                  <img src="assets/icons/Calendar.svg" alt="" class="w-4" />
-                  <div>Tanggal & Waktu</div>
+                <div>
+                  <div class="flex mb-1 gap-2">
+                    <img src="assets/icons/menu.png" alt="" class="w-4" />
+                    <input
+                      id="deskp"
+                      type="text"
+                      placeholder="Deskripsi Tugas (Optional)"
+                    />
+                  </div>
+                  <div class="flex gap-2">
+                    <img src="assets/icons/Calendar.svg" alt="" class="w-4" />
+                    <input
+                      id="taskDate"
+                      type="date"
+                      placeholder="Tanggal & Waktu"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+            <div>
+              <button type="submit"
+                id="btnTambahTugas"
+                class="rounded-3xl bg-orange-500 flex items-center p-2 text-white h-8 text-xs sm:tracking-normal md:tracking-normal xl:tracking-normal 2xl:tracking-normal"
+              >
+                <img src="assets/icons/Plus.svg" alt="" class="w-4" />
+              </button>
+            </div>
+          </form>
         </div>
+        <!-- task input end -->
 
-        <!-- promp input end -->
-        <div class="flex justify-between m-5">
+        <!-- new task -->
+        <div id="newTask"></div>
+        <!-- new task end -->
+        <!-- <div class="flex justify-between m-5">
           <div class="flex gap-1">
             <div>
               <input
@@ -148,10 +170,10 @@
               <img src="assets/icons/Arrow - Up 2.png" alt="" class="w-3 m-1" />
             </button>
           </div>
-        </div>
+        </div> -->
 
         <!-- ini subtask -->
-        <div class="m-5 bg-gray-200 p-5 rounded-md hidden" id="subtask">
+        <!-- <div class="m-5 bg-gray-200 p-5 rounded-md hidden" id="subtask">
           <div class="flex justify-between items-center mb-5">
             <div>
               <p>Subtask</p>
@@ -165,7 +187,6 @@
               </button>
             </div>
           </div>
-          <!-- ================================================================== -->
           <div>
             <div class="flex justify-between items-start">
               <label for="check-s1" class="flex gap-2 cursor-pointer">
@@ -236,10 +257,12 @@
               />
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- SUBTASK END -->
 
-        <div class="flex justify-between m-5">
+        <!-- ==================================================================== -->
+
+        <!-- <!-- <div class="flex justify-between m-5">
           <div class="flex gap-1">
             <div>
               <input
@@ -262,8 +285,8 @@
           <div>
             <img src="assets/icons/Arrow - Down 1.png" alt="" class="w-6" />
           </div>
-        </div>
-        <div class="flex justify-between m-5">
+        </div> -->
+        <!-- <div class="flex justify-between m-5">
           <div class="flex gap-1">
             <div>
               <input
@@ -286,7 +309,7 @@
           <div class="w-6 ml-2">
             <img src="assets/icons/Arrow - Down 1.png" alt="" />
           </div>
-        </div>
+        </div> -->
         <!-- footer end -->
         <hr class="m-5 mt-10" />
         <div class="flex items-center gap-2 m-5">
