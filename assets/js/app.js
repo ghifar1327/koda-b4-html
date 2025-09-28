@@ -38,6 +38,21 @@ define(["jquery"], function ($) {
       $option.on("click", (e) => e.stopPropagation());
     })();
 
+    // Expand/Collapse Subtask
+    $(document).on("click", "[id^=btn-arrow1]", function () {
+      const id = $(this).attr("id").replace("btn-arrow1", "");
+
+      // ambil elemen berdasarkan index
+      const $subtask = $(`#subtask${id}`);
+      const $arrow1 = $(`#arrow1${id}`);
+      const $arrow2 = $(`#arrow2${id}`);
+
+      // toggle tampilan
+      $subtask.toggleClass("hidden");
+      $arrow1.toggleClass("hidden");
+      $arrow2.toggleClass("hidden");
+    });
+
     // Form submit
     $("#form").on("submit", (e) => {
       e.preventDefault();
@@ -104,14 +119,30 @@ define(["jquery"], function ($) {
                 <div class="text-gray-400">${item.deskp}</div>
               </div>
             </div>
-            <div id="btn-arrow1">
-              <button id="arrow1">
+            <div id="btn-arrow1${index}">
+              <button id="arrow1${index}">
                 <img src="assets/icons/Arrow - Down 1.png" alt="" class="w-6" />
               </button>
-              <button id="arrow2" class="hidden">
+              <button id="arrow2${index}" class="hidden">
                 <img src="assets/icons/Arrow - Up 2.png" alt="" class="w-3 m-1" />
             </button>
           </div>
+          </div>
+
+          <div class="m-5 bg-gray-200 p-5 rounded-md hidden" id="subtask${index}">
+           <div class="flex justify-between items-center mb-5">
+             <div>
+              <p>Subtask</p>
+              </div>
+              <div>
+                <button
+                  class="rounded-3xl bg-white flex items-center p-2 text-orange-500 border h-8 text-xs"
+                  >
+                  <img src="assets/icons/Plus.png" alt="" class="w-3 mr-1" />
+                  <div>Tambah</div>
+                </button>
+              </div>
+            </div>
           </div>
         `);
       });
@@ -178,6 +209,15 @@ define(["jquery"], function ($) {
     });
 
     renderTasks();
+  });
+
+  $(document).ready(() => {
+    $("#btn-arrowFoot").on("click", (e) => {
+      e.preventDefault();
+      $("#tComplete").toggleClass("block hidden");
+      $("#btnFoot1").toggleClass("hidden block");
+      $("#btnFoot2").toggleClass("block hidden");
+    });
   });
 });
 
