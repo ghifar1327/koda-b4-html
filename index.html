@@ -61,7 +61,7 @@
           <div>
             <p>Short By</p>
           </div>
-          <div id="btnTanggal">
+          <div id="btnTanggal" class="relative">
             <div class="" id="btn-t1">
               <button
                 class="rounded-3xl bg-white flex items-center p-2 text-orange-500 border h-8 text-xs gap-1"
@@ -82,11 +82,49 @@
                 />
               </button>
             </div>
+            <!-- by tanggal  -->
+            <div
+              id="optionTanggal"
+              class="z-5 border border-orange-500 text-orange-500 absolute top-10 right-0 md:right-[-10px] lg:right-[-10px] xl:right-[-10px] rounded-sm bg-orange-100 w-50 p-5 hidden md:right-20 lg:right-50 xl:right-90"
+            >
+              <div class="flex justify-between mb-1">
+                <label for="tanggal">By Tanggal</label>
+                <input
+                  type="radio"
+                  id="tanggal"
+                  name="1"
+                  class="accent-[#FF5F26]"
+                />
+              </div>
+              <div class="flex justify-between mb-1">
+                <label for="time">By Time</label>
+                <input
+                  type="radio"
+                  id="time"
+                  name="1"
+                  class="accent-[#FF5F26]"
+                />
+              </div>
+              <div class="flex justify-between">
+                <label for="Terbaru">Terbaru</label>
+                <input
+                  type="radio"
+                  id="Terbaru"
+                  name="1"
+                  class="accent-[#FF5F26]"
+                />
+              </div>
+            </div>
+            <!-- by tanggal end -->
           </div>
         </div>
         <!-- task input -->
         <div id="tambahTugas" class="hidden">
-          <form method="get" id="form" class="flex justify-between p-5 bg-gray-200 text-xs">
+          <form
+            method="get"
+            id="form"
+            class="flex justify-between p-5 bg-gray-200 text-xs"
+          >
             <div class="flex">
               <div>
                 <input
@@ -124,7 +162,8 @@
               </div>
             </div>
             <div>
-              <button type="submit"
+              <button
+                type="submit"
                 id="btnTambahTugas"
                 class="rounded-3xl bg-orange-500 flex items-center p-2 text-white h-8 text-xs sm:tracking-normal md:tracking-normal xl:tracking-normal 2xl:tracking-normal"
               >
@@ -392,8 +431,8 @@
         <!-- footer end -->
       </div>
     </main>
-    <div
-      id="optionRd"
+    <!-- <div
+      id="optionRd{index}"
       class="border border-orange-500 text-orange-500 absolute top-83 right-30 rounded-md bg-orange-100 text-sm w-35 h-20 p-4 hidden md:left-80 md:top-80 lg:left-120 xl:left-160"
     >
       <div class="flex justify-between mb-2">
@@ -404,26 +443,8 @@
         <img src="assets/icons/Delete.png" alt="" class="w-3 h-4" />
         <p>Delete task</p>
       </div>
-    </div>
-    <!-- by tanggal  -->
-    <div
-      id="optionTanggal"
-      class="border border-orange-500 text-orange-500 absolute top-73 right-5 rounded-sm bg-orange-100 w-50 p-5 hidden md:right-20 md:top-83 lg:right-50 xl:right-90"
-    >
-      <div class="flex justify-between mb-1">
-        <label for="tanggal">By Tanggal</label>
-        <input type="radio" id="tanggal" name="1" class="accent-[#FF5F26]" />
-      </div>
-      <div class="flex justify-between mb-1">
-        <label for="time">By Time</label>
-        <input type="radio" id="time" name="1" class="accent-[#FF5F26]" />
-      </div>
-      <div class="flex justify-between">
-        <label for="Terbaru">Terbaru</label>
-        <input type="radio" id="Terbaru" name="1" class="accent-[#FF5F26]" />
-      </div>
-    </div>
-    <!-- by tanggal end -->
+    </div> -->
+
     <script
       data-main="assets/js/main"
       src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"

@@ -1,7 +1,7 @@
 define(["jquery"], function ($) {
   $(document).ready(() => {
     // Button tambah tugas
-    $(function () {
+    (() => {
       const $btn = $("#btnTambahTugas");
       const $dropdown = $("#tambahTugas");
 
@@ -10,16 +10,12 @@ define(["jquery"], function ($) {
         $dropdown.toggleClass("hidden");
       });
 
-      $(document).on("click", () => {
-        $dropdown.addClass("hidden");
-      });
-
+      $(document).on("click", () => $dropdown.addClass("hidden"));
       $dropdown.on("click", (e) => e.stopPropagation());
-    });
-    // button tamabah tugas end
+    })();
 
-    // button by tanggal
-    $(function () {
+    // Button by tanggal
+    (() => {
       const $btn1 = $("#btn-t1");
       const $btn2 = $("#btn-t2");
       const $option = $("#optionTanggal");
@@ -38,41 +34,37 @@ define(["jquery"], function ($) {
       });
 
       $option.on("click", (e) => e.stopPropagation());
-    });
-    // button tanggal end
+    })();
 
+    // Form submit
     $("#form").on("submit", (e) => {
       e.preventDefault();
 
-      let taskName = $("#taskName").val().trim();
-      let deskp = $("#deskp").val().trim();
-      let taskDate = $("#taskDate").val().trim();
+      const taskName = $("#taskName").val().trim();
+      const deskp = $("#deskp").val().trim();
+      const taskDate = $("#taskDate").val().trim();
 
-      //Cek kalau input kosong
-      if (taskName === "" || taskDate === "") {
+      if (!taskName || !taskDate) {
         alert("Input tugas belum di isi");
         return;
       }
 
-      let data = JSON.parse(localStorage.getItem("user task")) || [];
-
-      // Simpan data hanya kalau valid
+      const data = JSON.parse(localStorage.getItem("user task")) || [];
       data.push({ taskName, deskp, taskDate });
       localStorage.setItem("user task", JSON.stringify(data));
-      console.log("Data tersimpan:", data);
 
       $("#form")[0].reset();
       renderTasks();
     });
 
-    // Fungsi render daftar tugas
+    // Render daftar tugas
     function renderTasks() {
-      $("#newTask").empty();
-      let data = JSON.parse(localStorage.getItem("user task")) || [];
+      const $list = $("#newTask").empty();
+      const data = JSON.parse(localStorage.getItem("user task")) || [];
 
       $.each(data, (index, item) => {
-        $("#newTask").append(
-          `<div class="flex justify-between m-5">
+        $list.append(`
+          <div class="flex justify-between m-5 relative">
             <div class="flex gap-1">
               <div>
                 <input
@@ -93,6 +85,19 @@ define(["jquery"], function ($) {
                   <button class="btnOption" data-id="${index}">
                     <img src="assets/icons/more-vertical.png" alt="" />
                   </button>
+                  <div
+                    id="optionRd${index}"
+                    class="border border-orange-500 text-orange-500 absolute top-8 z-5 right-0 md:left-40 rounded-md bg-orange-100 text-sm w-35 h-20 p-4 hidden"
+                  >
+                    <button id="reNm${index}" class="flex justify-between mb-2">
+                      <img src="assets/icons/Edit.png" alt="" class="w-5" />
+                      <p>Rename Task</p>
+                    </button>
+                    <button id="delTs${index}" class="flex gap-4">
+                      <img src="assets/icons/Delete.png" alt="" class="w-3 h-4" />
+                      <p>Delete task</p>
+                    </button>
+                  </div>
                 </div>
                 <div class="text-gray-400">${item.deskp}</div>
               </div>
@@ -105,20 +110,34 @@ define(["jquery"], function ($) {
                 <img src="assets/icons/Arrow - Up 2.png" alt="" class="w-3 m-1"/>
               </button>
             </div>
-          </div>`
-        );
+          </div>
+        `);
       });
     }
+
+$(document).on("click", ".btnOption", function (e) {
+  e.stopPropagation();
+  const id = $(this).data("id");
+
+  $("[id^=optionRd]").not(`#optionRd${id}`).addClass("hidden");
+
+  $(`#optionRd${id}`).toggleClass("hidden");
+});
+
+$(document).on("click", () => {
+  $("[id^=optionRd]").addClass("hidden");
+});
+
+$(document).on("click", "[id^=optionRd]", function (e) {
+  e.stopPropagation();
+});
+
     renderTasks();
   });
 });
 
-// $(document).ready(() => {
-//   $("#btnOption").on("click", (e) => {
-//     e.preventDefault();
-//     $("#optionRd").toggleClass("block hidden");
-//   });
-// });
+
+
 // $(document).ready(() =>{
 //   $('#btn-arrow1').on('click', (e)=>{
 //       e.preventDefault()
