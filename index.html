@@ -26,7 +26,7 @@
         <div class="flex justify-center items-center gap-1 mt-5">
           <img src="assets/icons/Notification.svg" alt="" />
           <div
-            class="border border-gray-300 w-11 h-11 rounded-[50%] flex justify-center items-center"
+            class="border border-gray-300 w-11 h-11 rounded-full flex justify-center items-center"
           >
             <img src="assets/icons/Ellipse 34.png" alt="" />
           </div>
@@ -35,10 +35,12 @@
         </div>
       </div>
     </header>
+
     <main class="flex justify-center">
       <div
         class="w-100 border border-orange-500 bg-white rounded-lg shadow-xl pt-1 pb-1 md:mt-10 md:w-160 xl:w-200"
       >
+        <!-- Header -->
         <div class="flex justify-between m-5">
           <div class="w-35">
             <p class="text-orange-500 mb-2">MY TASKS</p>
@@ -50,19 +52,19 @@
           <div>
             <button
               id="btnTambahTugas"
-              class="cursor-pointer rounded-3xl bg-orange-500 flex items-center p-2 text-white h-8 text-xs tracking-tighter sm:tracking-normal md:tracking-normal xl:tracking-normal 2xl:tracking-normal"
+              class="cursor-pointer rounded-3xl bg-orange-500 flex items-center p-2 text-white h-8 text-xs"
             >
               <img src="assets/icons/Plus.svg" alt="" class="w-4 mr-1" />Tambah
               tugas
             </button>
           </div>
         </div>
+
+        <!-- Filter -->
         <div class="flex justify-between items-center m-5">
-          <div>
-            <p>Short By</p>
-          </div>
+          <div><p>Short By</p></div>
           <div id="btnTanggal" class="relative">
-            <div class="" id="btn-t1">
+            <div id="btn-t1">
               <button
                 class="rounded-3xl bg-white flex items-center p-2 text-orange-500 border h-8 text-xs gap-1"
               >
@@ -75,24 +77,19 @@
                 class="rounded-3xl bg-white flex items-center p-2 text-gray-400 border h-8 text-xs gap-2"
               >
                 <div>By Tanggal</div>
-                <img
-                  src="assets/icons/Arrow - Up 2.png"
-                  alt=""
-                  class="w-[10px] h-[10px] mr-[6px]"
-                />
+                <img src="assets/icons/Arrow - Up 2.png" alt="" class="w-3" />
               </button>
             </div>
-            <!-- by tanggal  -->
             <div
               id="optionTanggal"
-              class="z-5 border border-orange-500 text-orange-500 absolute top-10 right-0 md:right-[-10px] lg:right-[-10px] xl:right-[-10px] rounded-sm bg-orange-100 w-50 p-5 hidden md:right-20 lg:right-50 xl:right-90"
+              class="z-5 border border-orange-500 text-orange-500 absolute top-10 right-0 rounded-sm bg-orange-100 w-50 p-5 hidden"
             >
               <div class="flex justify-between mb-1">
                 <label for="tanggal">By Tanggal</label>
                 <input
                   type="radio"
                   id="tanggal"
-                  name="1"
+                  name="sort"
                   class="accent-[#FF5F26]"
                 />
               </div>
@@ -101,7 +98,7 @@
                 <input
                   type="radio"
                   id="time"
-                  name="1"
+                  name="sort"
                   class="accent-[#FF5F26]"
                 />
               </div>
@@ -110,27 +107,26 @@
                 <input
                   type="radio"
                   id="Terbaru"
-                  name="1"
+                  name="sort"
                   class="accent-[#FF5F26]"
                 />
               </div>
             </div>
-            <!-- by tanggal end -->
           </div>
         </div>
-        <!-- task input -->
+
+        <!-- Form tambah task -->
         <div id="tambahTugas" class="hidden">
-          <form
-            method="get"
-            id="form"
-            class="flex justify-between p-5 bg-gray-200 text-xs"
-          >
+          <form id="form" class="flex justify-between p-5 bg-gray-200 text-xs">
             <div class="flex">
               <div>
-                <input
-                  type="checkbox"
-                  class="mt-1 bg-white appearance-none w-4 h-4 border-2 border-orange-500 rounded-full checked:bg-orange-500 checked:border-orange-500 checked:[background-image:url('assets/icons/checked.svg')] checked:bg-[length:70%_70%] bg-center bg-no-repeat cursor-pointer"
-                />
+                <label for="check-s1" class="flex gap-2 cursor-pointer">
+                  <input
+                    id="check-s1"
+                    type="checkbox"
+                    class="peer mt-1 bg-white appearance-none w-4 h-4 border-2 border-orange-500 rounded-full checked:bg-orange-500 checked:border-orange-500 checked:[background-image:url('assets/icons/checked.svg')] checked:bg-[length:70%_70%] bg-center bg-no-repeat cursor-pointer"
+                  />
+                </label>
               </div>
               <div class="ml-2">
                 <div>
@@ -138,7 +134,7 @@
                     id="taskName"
                     type="text"
                     placeholder="Masukan nama tugas"
-                    class="mb-1 text-base"
+                    class="mb-1 text-base outline-none"
                   />
                 </div>
                 <div>
@@ -148,14 +144,16 @@
                       id="deskp"
                       type="text"
                       placeholder="Deskripsi Tugas (Optional)"
+                      class="outline-none"
                     />
                   </div>
                   <div class="flex gap-2">
                     <img src="assets/icons/Calendar.svg" alt="" class="w-4" />
                     <input
                       id="taskDate"
-                      type="date"
+                      type="text"
                       placeholder="Tanggal & Waktu"
+                      class="outline-none"
                     />
                   </div>
                 </div>
@@ -164,264 +162,84 @@
             <div>
               <button
                 type="submit"
-                id="btnTambahTugas"
-                class="rounded-3xl bg-orange-500 flex items-center p-2 text-white h-8 text-xs sm:tracking-normal md:tracking-normal xl:tracking-normal 2xl:tracking-normal"
+                class="rounded-3xl bg-orange-500 flex items-center p-2 text-white h-8 text-xs"
               >
                 <img src="assets/icons/Plus.svg" alt="" class="w-4" />
               </button>
             </div>
           </form>
         </div>
-        <!-- task input end -->
 
-        <!-- new task -->
+        <!-- List tugas aktif -->
         <div id="newTask"></div>
 
-        <!-- ini subtask -->
-        <!-- <div class="m-5 bg-gray-200 p-5 rounded-md hidden" id="subtask${index}">
-          <div class="flex justify-between items-center mb-5">
-            <div>
-              <p>Subtask</p>
-            </div>
-            <div>
-              <button
-                class="rounded-3xl bg-white flex items-center p-2 text-orange-500 border h-8 text-xs"
-              >
-                <img src="assets/icons/Plus.png" alt="" class="w-3 mr-1" />
-                <div>Tambah</div>
-              </button>
-            </div>
-          </div>
-          <div>
-            <div class="flex justify-between items-start">
-              <label for="check-s1" class="flex gap-2 cursor-pointer">
-                <input
-                  id="check-s1"
-                  type="checkbox"
-                  class="peer mt-1 bg-white appearance-none w-4 h-4 border-2 border-orange-500 rounded-full checked:bg-orange-500 checked:border-orange-500 checked:[background-image:url('assets/icons/checked.svg')] checked:bg-[length:70%_70%] bg-center bg-no-repeat cursor-pointer"
-                />
-                <span class="peer-checked:line-through"> Design Renew </span>
-              </label>
-              <img
-                src="assets/icons/trash.png"
-                alt=""
-                class="w-4 flex-shrink-0"
-              />
-            </div>
-            <div class="flex justify-between items-start">
-              <label for="check-s2" class="flex gap-2 cursor-pointer">
-                <input
-                  id="check-s2"
-                  type="checkbox"
-                  class="peer mt-1 bg-white appearance-none w-4 h-4 border-2 border-orange-500 rounded-full checked:bg-orange-500 checked:border-orange-500 checked:[background-image:url('assets/icons/checked.svg')] checked:bg-[length:70%_70%] bg-center bg-no-repeat cursor-pointer"
-                />
-                <span class="peer-checked:line-through">
-                  Low-Fidelity design
-                </span>
-              </label>
-              <img
-                src="assets/icons/trash.png"
-                alt=""
-                class="w-4 flex-shrink-0"
-              />
-            </div>
-
-            <div class="flex justify-between items-start">
-              <label for="check-s3" class="flex gap-2 cursor-pointer">
-                <input
-                  id="check-s3"
-                  type="checkbox"
-                  class="peer mt-1 bg-white appearance-none w-4 h-4 border-2 border-orange-500 rounded-full checked:bg-orange-500 checked:border-orange-500 checked:[background-image:url('assets/icons/checked.svg')] checked:bg-[length:70%_70%] bg-center bg-no-repeat cursor-pointer"
-                />
-                <span class="peer-checked:line-through">
-                  High-Fidelity design
-                </span>
-              </label>
-              <img
-                src="assets/icons/trash.png"
-                alt=""
-                class="w-4 flex-shrink-0"
-              />
-            </div>
-
-            <div class="flex justify-between items-start">
-              <label for="check-s4" class="flex gap-2 cursor-pointer">
-                <input
-                  id="check-s4"
-                  type="checkbox"
-                  class="peer mt-1 bg-white appearance-none w-4 h-4 border-2 border-orange-500 rounded-full checked:bg-orange-500 checked:border-orange-500 checked:[background-image:url('assets/icons/checked.svg')] checked:bg-[length:70%_70%] bg-center bg-no-repeat cursor-pointer"
-                />
-                <span class="peer-checked:line-through">
-                  Design Guidelines
-                </span>
-              </label>
-              <img
-                src="assets/icons/trash.png"
-                alt=""
-                class="w-4 flex-shrink-0"
-              />
-            </div>
-          </div>
-        </div> -->
-        <!-- SUBTASK END -->
-
-        <!-- ==================================================================== -->
-
-        <!-- <div class="flex justify-between m-5">
-          <div class="flex gap-1">
-            <div>
-              <input
-                id="check-2"
-                type="checkbox"
-                class="mt-1 bg-white appearance-none w-4 h-4 border-2 border-orange-500 rounded-full checked:bg-orange-500 checked:border-orange-500 checked:[background-image:url('assets/icons/checked.svg')] checked:bg-[length:70%_70%] bg-center bg-no-repeat cursor-pointer"
-              />
-            </div>
-            <div class="flex gap-2">
-              <div>
-                <label for="check-2">Development</label>
-              </div>
-              <div
-                class="rounded-3xl bg-orange-100 flex items-center p-3 h-4 text-orange-500 gap-1 border text-xs"
-              >
-                15 Juni 2022
-              </div>
-            </div>
-          </div>
-          <div>
-            <img src="assets/icons/Arrow - Down 1.png" alt="" class="w-6" />
-          </div>
-        </div> -->
-        <!-- <div class="flex justify-between m-5">
-          <div class="flex gap-1">
-            <div>
-              <input
-                id="check-3"
-                type="checkbox"
-                class="mt-1 bg-white appearance-none w-4 h-4 border-2 border-orange-500 rounded-full checked:bg-orange-500 checked:border-orange-500 checked:[background-image:url('assets/icons/checked.svg')] checked:bg-[length:70%_70%] bg-center bg-no-repeat cursor-pointer"
-              />
-            </div>
-            <div class="flex flex-wrap gap-2 w-49 sm:w-[100%]">
-              <div>
-                <label for="check-3">Launching Wazwez Website</label>
-              </div>
-              <div
-                class="rounded-3xl bg-orange-100 flex items-center p-3 h-4 text-orange-500 gap-1 border text-xs"
-              >
-                20 juni Juni 2022
-              </div>
-            </div>
-          </div>
-          <div class="w-6 ml-2">
-            <img src="assets/icons/Arrow - Down 1.png" alt="" />
-          </div>
-        </div> -->
-        <!-- footer end -->
+        <!-- Footer -->
         <hr class="m-5 mt-10" />
         <div class="flex items-center gap-2 m-5">
-          <div class="hidden">
-            <img
-              src="assets/icons/Arrow - Right 2.png"
-              alt=""
-              class="w-3 h-3"
-            />
-          </div>
           <div id="btn-arrowFoot">
             <button id="btnFoot1">
               <img
                 src="assets/icons/Arrow - Right 2.png"
                 alt=""
-                class="w-[10px] h-[11px] mr-[2px]"
+                class="w-3 h-3"
               />
             </button>
             <button id="btnFoot2" class="hidden">
               <img src="assets/icons/Arrow - Up 2.png" alt="" class="w-3" />
             </button>
           </div>
-          <div>Terselesaikan (3 Tugas)</div>
-        </div>
-        <!-- ========================================================= -->
-        <div id="tComplete" class="m-5 hidden space-y-2">
-          <div class="flex justify-between items-start">
-            <label for="check-t1" class="flex gap-2 cursor-pointer">
-              <input
-                id="check-t1"
-                type="checkbox"
-                class="peer mt-1 bg-white appearance-none w-4 h-4 border-2 border-orange-500 rounded-full checked:bg-orange-500 checked:border-orange-500 checked:[background-image:url('assets/icons/checked.svg')] checked:bg-[length:70%_70%] bg-center bg-no-repeat cursor-pointer"
-              />
-              <span class="peer-checked:line-through">
-                Requirements Detail
-              </span>
-            </label>
-            <img
-              src="assets/icons/Arrow - Down 1.png"
-              alt=""
-              class="w-6 flex-shrink-0"
-            />
-          </div>
-
-          <div class="flex justify-between items-start">
-            <label for="check-t2" class="flex gap-2 cursor-pointer">
-              <input
-                id="check-t2"
-                type="checkbox"
-                class="peer mt-1 bg-white appearance-none w-4 h-4 border-2 border-orange-500 rounded-full checked:bg-orange-500 checked:border-orange-500 checked:[background-image:url('assets/icons/checked.svg')] checked:bg-[length:70%_70%] bg-center bg-no-repeat cursor-pointer"
-              />
-              <span class="peer-checked:line-through"> Backlog Teams </span>
-            </label>
-            <img
-              src="assets/icons/Arrow - Down 1.png"
-              alt=""
-              class="w-6 flex-shrink-0"
-            />
-          </div>
-
-          <div class="flex justify-between items-start">
-            <label for="check-t3" class="flex gap-2 cursor-pointer">
-              <input
-                id="check-t3"
-                type="checkbox"
-                class="peer mt-1 bg-white appearance-none w-4 h-4 border-2 border-orange-500 rounded-full checked:bg-orange-500 checked:border-orange-500 checked:[background-image:url('assets/icons/checked.svg')] checked:bg-[length:70%_70%] bg-center bg-no-repeat cursor-pointer"
-              />
-              <span class="peer-checked:line-through">
-                Meetings White Teams
-              </span>
-            </label>
-            <img
-              src="assets/icons/Arrow - Down 1.png"
-              alt=""
-              class="w-6 flex-shrink-0"
-            />
-          </div>
+          <div id="doneCount">Terselesaikan (0 Tugas)</div>
         </div>
 
-        <!-- footer end -->
+        <!-- List tugas selesai -->
+        <div id="tComplete" class="m-5 hidden space-y-2"></div>
       </div>
     </main>
-    <!-- ================================================== -->
-<!-- Overlay -->
-<div id="renameModal" class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50">
-  <!-- Modal Box -->
-  <div class="bg-white rounded-xl p-6 w-80 shadow-lg transform transition-all scale-95 opacity-0"
-       id="renameBox">
-    <h2 class="text-lg font-semibold text-gray-700 mb-4">Rename Task</h2>
-    <input
-      id="renameInput"
-      type="text"
-      class="w-full border rounded-md p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-orange-400"
-      placeholder="Masukkan nama baru"
-    />
-    <div class="flex justify-end gap-2">
-      <button id="cancelRename" class="px-4 py-2 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-700">
-        Batal
-      </button>
-      <button id="saveRename" class="px-4 py-2 rounded-md bg-orange-500 hover:bg-orange-600 text-white">
-        Simpan
-      </button>
+
+    <!-- Modal Rename -->
+    <div
+      id="renameModal"
+      class="fixed inset-0 bg-black/50 hidden flex items-center justify-center z-50"
+    >
+      <div
+        id="renameBox"
+        class="bg-white rounded-xl p-6 w-80 shadow-lg transform transition-all scale-95 opacity-0"
+      >
+        <h2 class="text-lg font-semibold text-gray-700 mb-4">Rename Task</h2>
+        <input
+          id="renameInput"
+          type="text"
+          class="w-full border rounded-md p-2 mb-4 focus:outline-none focus:ring-2 focus:ring-orange-400"
+          placeholder="Masukkan nama baru"
+        />
+        <div class="flex justify-end gap-2">
+          <button
+            id="cancelRename"
+            class="px-4 py-2 rounded-md bg-gray-200 hover:bg-gray-300 text-gray-700"
+          >
+            Batal
+          </button>
+          <button
+            id="saveRename"
+            class="px-4 py-2 rounded-md bg-orange-500 hover:bg-orange-600 text-white"
+          >
+            Simpan
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
-
+    <!-- <div class="flex justify-between items-start">
+      <label for="check-s1" class="flex gap-2 cursor-pointer">
+        <input
+          id="check-s1"
+          type="checkbox"
+          class="peer mt-1 bg-white appearance-none w-4 h-4 border-2 border-orange-500 rounded-full checked:bg-orange-500 checked:border-orange-500 checked:[background-image:url('assets/icons/checked.svg')] checked:bg-[length:70%_70%] bg-center bg-no-repeat cursor-pointer"
+        />
+        <span class="peer-checked:line-through"> Design Renew </span>
+      </label>
+      <img src="assets/icons/trash.png" alt="" class="w-4 flex-shrink-0" />
+    </div> -->
     <script
       data-main="assets/js/main"
       src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"
