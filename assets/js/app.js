@@ -165,36 +165,51 @@ define(["jquery"], function ($) {
       e.stopPropagation();
     });
 
-    // Rename Task
-    $(document).on("click", "[id^=reNm]", function () {
-      const id = $(this).attr("id").replace("reNm", "");
-      let data = JSON.parse(localStorage.getItem("user task")) || [];
+// Buka modal rename
+$(document).on("click", "[id^=reNm]", function () {
+  const id = $(this).attr("id").replace("reNm", "");
+  let data = JSON.parse(localStorage.getItem("user task")) || [];
 
-      currentTaskId = id;
-      $("#renameInput").val(data[id].taskName);
-      $("#renameModal").removeClass("hidden");
-    });
+  currentTaskId = id;
+  $("#renameInput").val(data[id].taskName);
 
-    $("#cancelRename").on("click", function () {
-      $("#renameModal").addClass("hidden");
-      currentTaskId = null;
-    });
+  // Tampilkan modal dengan animasi
+  $("#renameModal").removeClass("hidden");
+  setTimeout(() => {
+    $("#renameBox").removeClass("scale-95 opacity-0").addClass("scale-100 opacity-100");
+  }, 50);
+});
 
-    $("#saveRename").on("click", function () {
-      if (currentTaskId === null) return;
+// Tutup modal (cancel)
+$("#cancelRename").on("click", function () {
+  closeRenameModal();
+});
 
-      let data = JSON.parse(localStorage.getItem("user task")) || [];
-      const newName = $("#renameInput").val().trim();
+// Simpan rename
+$("#saveRename").on("click", function () {
+  if (currentTaskId === null) return;
 
-      if (newName !== "") {
-        data[currentTaskId].taskName = newName;
-        localStorage.setItem("user task", JSON.stringify(data));
-        renderTasks();
-      }
+  let data = JSON.parse(localStorage.getItem("user task")) || [];
+  const newName = $("#renameInput").val().trim();
 
-      $("#renameModal").addClass("hidden");
-      currentTaskId = null;
-    });
+  if (newName !== "") {
+    data[currentTaskId].taskName = newName;
+    localStorage.setItem("user task", JSON.stringify(data));
+    renderTasks();
+  }
+
+  closeRenameModal();
+  currentTaskId = null;
+});
+
+// Fungsi close modal
+function closeRenameModal() {
+  $("#renameBox").removeClass("scale-100 opacity-100").addClass("scale-95 opacity-0");
+  setTimeout(() => {
+    $("#renameModal").addClass("hidden");
+  }, 200);
+}
+
 
     // Delete Task
     $(document).on("click", "[id^=delTs]", function () {
