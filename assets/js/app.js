@@ -1,19 +1,45 @@
 define(["jquery"], function ($) {
   $(document).ready(() => {
-    // Toggle form tambah tugas
-    $("#btnTambahTugas").on("click", (e) => {
-      e.stopPropagation();
-      e.preventDefault();
-      $("#tambahTugas").toggleClass("hidden");
-    });
-    $(document).ready(() => {
-      $("#btnTanggal").on("click", (e) => {
-        e.preventDefault();
-        $("#btn-t1").toggleClass("hidden block");
-        $("#btn-t2").toggleClass("block hidden");
-        $("#optionTanggal").toggleClass("block hidden");
+    // Button tambah tugas
+    $(function () {
+      const $btn = $("#btnTambahTugas");
+      const $dropdown = $("#tambahTugas");
+
+      $btn.on("click", (e) => {
+        e.stopPropagation();
+        $dropdown.toggleClass("hidden");
       });
+
+      $(document).on("click", () => {
+        $dropdown.addClass("hidden");
+      });
+
+      $dropdown.on("click", (e) => e.stopPropagation());
     });
+    // button tamabah tugas end
+
+    // button by tanggal
+    $(function () {
+      const $btn1 = $("#btn-t1");
+      const $btn2 = $("#btn-t2");
+      const $option = $("#optionTanggal");
+
+      $btn1.on("click", (e) => {
+        e.stopPropagation();
+        $btn1.addClass("hidden");
+        $btn2.removeClass("hidden");
+        $option.removeClass("hidden");
+      });
+
+      $(document).on("click", () => {
+        $option.addClass("hidden");
+        $btn2.addClass("hidden");
+        $btn1.removeClass("hidden");
+      });
+
+      $option.on("click", (e) => e.stopPropagation());
+    });
+    // button tanggal end
 
     $("#form").on("submit", (e) => {
       e.preventDefault();
