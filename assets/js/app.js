@@ -2,8 +2,11 @@
 define(["jquery"], function ($) {
   $(document).ready(() => {
     let currentTaskId = null;
+    let currentDeleteId = null;
+    let currentDeleteType = null;
+    let currentSubtaskId = null;
 
-    // Button tambah tugas (toggle form)
+    // Button tambah tugas
     (() => {
       const $btn = $("#btnTambahTugas");
       const $dropdown = $("#tambahTugas");
@@ -51,11 +54,9 @@ define(["jquery"], function ($) {
       renderTasks();
     });
 
-    // open/close rename modal with animation (styling unchanged)
     function openRenameModal(taskName) {
       $("#renameInput").val(taskName || "");
       $("#renameModal").removeClass("hidden");
-      // animasi show (renameBox di HTML memiliki kelas scale-95 opacity-0)
       setTimeout(() => {
         $("#renameBox")
           .removeClass("scale-95 opacity-0")
@@ -72,7 +73,75 @@ define(["jquery"], function ($) {
       currentTaskId = null;
     }
 
-    // Render semua tasks (tidak mengubah styling)
+    function openDeleteModal(type, itemName) {
+      currentDeleteType = type;
+      const message = type === 'task' 
+        ? `Yakin mau hapus task "${itemName}"?` 
+        : `Yakin mau hapus subtask "${itemName}"?`;
+      $("#deleteMessage").text(message);
+      $("#deleteModal").removeClass("hidden");
+      setTimeout(() => {
+        $("#deleteBox")
+          .removeClass("scale-95 opacity-0")
+          .addClass("scale-100 opacity-100");
+      }, 20);
+    }
+    function closeDeleteModal() {
+      $("#deleteBox")
+        .removeClass("scale-100 opacity-100")
+        .addClass("scale-95 opacity-0");
+      setTimeout(() => {
+        $("#deleteModal").addClass("hidden");
+      }, 180);
+      currentDeleteId = null;
+      currentDeleteType = null;
+      currentSubtaskId = null;
+    }
+
+    // Tambah subtask
+    $(document).on("click", ".addSubtaskBtn", function (e) {
+      e.preventDefault();
+      const id = $(this).data("id");
+      const $input = $(`#newSubtaskInput${id}`);
+      const subName = $input.val().trim();
+      if (!subName) return;
+
+      let data = JSON.parse(localStorage.getItem("user task")) || [];
+      if (!data[id].subtasks) data[id].subtasks = [];
+
+      data[id].subtasks.push({ name: subName, done: false });
+      localStorage.setItem("user task", JSON.stringify(data));
+
+      const newSubtaskHtml = `
+        <div class="flex gap-2 items-center justify-between">
+          <label class="flex gap-2 cursor-pointer items-center flex-1">
+            <input
+              type="checkbox"
+              class="subtask-check appearance-none w-4 h-4 border-2 border-orange-500 rounded-full 
+                     checked:bg-orange-500 checked:border-orange-500 
+                     checked:[background-image:url('assets/icons/checked.svg')] 
+                     checked:bg-[length:70%_70%] bg-center bg-no-repeat cursor-pointer"
+              data-task-id="${id}"
+              data-sub-id="${data[id].subtasks.length - 1}"
+            />
+            <span>${subName}</span>
+          </label>
+          <button 
+            class="deleteSubtaskBtn text-red-500 hover:text-red-700"
+            data-task-id="${id}"
+            data-sub-id="${data[id].subtasks.length - 1}"
+            title="Hapus subtask"
+          >
+            <img src="assets/icons/Delete.png" alt="" class="w-3 h-4" />
+          </button>
+        </div>
+      `;
+
+      $(`#subtaskList${id}`).append(newSubtaskHtml);
+      $input.val("");
+    });
+
+    // Render semua tasks
     function renderTasks() {
       const $list = $("#newTask").empty();
       const $complete = $("#tComplete").empty();
@@ -125,7 +194,7 @@ define(["jquery"], function ($) {
                       <img src="assets/icons/Edit.png" alt="" class="w-5" />
                       <p>Rename Task</p>
                     </button>
-                    <button id="delTs${index}" class="flex gap-4" data-id="${index}">
+                    <button id="delTs${index}" class="flex gap-1 ml-1" data-id="${index}">
                       <img src="assets/icons/Delete.png" alt="" class="w-3 h-4" />
                       <p>Delete task</p>
                     </button>
@@ -145,18 +214,64 @@ define(["jquery"], function ($) {
           </div>
 
           <div class="m-5 bg-gray-200 p-5 rounded-md hidden" id="subtask${index}">
-           <div class="flex justify-between items-center mb-5">
-             <div>
-              <p>Subtask</p>
-              </div>
-              <div>
-                <button
-                  class="rounded-3xl bg-white flex items-center p-2 text-orange-500 border h-8 text-xs"
-                  >
-                  <img src="assets/icons/Plus.png" alt="" class="w-3 mr-1" />
-                  <div>Tambah</div>
+            <div class="mb-3 flex justify-between items-center">
+             <p class="font-semibold">Subtask</p>
+            </div>
+
+            <div class="flex gap-2 mb-3">
+              <input
+                type="text"
+                id="newSubtaskInput${index}"
+                class="flex-1 border border-orange-400 rounded-md p-2 text-sm focus:outline-none"
+                placeholder="Tulis subtask..."
+              />
+              <button
+                class="addSubtaskBtn bg-orange-500 text-white text-xs rounded-md px-3"
+                data-id="${index}"
+              >
+                Tambah
+              </button>
+            </div>
+
+            <div id="subtaskList${index}" class="space-y-2">
+              ${
+                item.subtasks
+                  ? item.subtasks
+                      .map(
+                        (sub, subIndex) => `
+              <div class="flex gap-2 items-center justify-between">
+                <label class="flex gap-2 cursor-pointer items-center flex-1">
+                  <input
+                    type="checkbox"
+                    class="subtask-check appearance-none w-4 h-4 border-2 border-orange-500 rounded-full 
+                    checked:bg-orange-500 checked:border-orange-500 
+                    checked:[background-image:url('assets/icons/checked.svg')] 
+                    checked:bg-[length:70%_70%] bg-center bg-no-repeat cursor-pointer"
+                    data-task-id="${index}"
+                    data-sub-id="${subIndex}"
+                    ${sub.done ? "checked" : ""}
+                  />
+                  <span class="${
+                    sub.done ? "line-through text-gray-400" : ""
+                  }">
+                    ${sub.name}
+                  </span>
+                </label>
+                <button 
+                  class="deleteSubtaskBtn text-red-500 hover:text-red-700"
+                  data-task-id="${index}"
+                  data-sub-id="${subIndex}"
+                  data-subtask-name="${sub.name}"
+                  title="Hapus subtask"
+                >
+                  <img src="assets/icons/Delete.png" alt="" class="w-3 h-4" />
                 </button>
               </div>
+              `
+                      )
+                      .join("")
+                  : ""
+              }
             </div>
           </div>
         `;
@@ -169,13 +284,12 @@ define(["jquery"], function ($) {
         }
       });
 
-      // update jumlah selesai (tetap styling sama)
       $("#doneCount").text(
         `Terselesaikan (${data.filter((t) => t.done).length} Tugas)`
       );
     }
 
-    // Checkbox change → update done (delegated)
+    // Checkbox task change
     $(document).on("change", ".task-check", function () {
       const id = Number($(this).data("id"));
       let data = JSON.parse(localStorage.getItem("user task")) || [];
@@ -185,7 +299,47 @@ define(["jquery"], function ($) {
       renderTasks();
     });
 
-    // Show dropdown options (per-task)
+    // Checkbox subtask change
+    $(document).on("change", ".subtask-check", function () {
+      const taskId = Number($(this).data("task-id"));
+      const subId = Number($(this).data("sub-id"));
+
+      let data = JSON.parse(localStorage.getItem("user task")) || [];
+      if (
+        !data[taskId] ||
+        !data[taskId].subtasks ||
+        !data[taskId].subtasks[subId]
+      )
+        return;
+
+      data[taskId].subtasks[subId].done = this.checked;
+      localStorage.setItem("user task", JSON.stringify(data));
+
+      const $span = $(this).next("span");
+      if (this.checked) {
+        $span.addClass("line-through text-gray-400");
+      } else {
+        $span.removeClass("line-through text-gray-400");
+      }
+    });
+
+    // Handler hapus subtask
+    $(document).on("click", ".deleteSubtaskBtn", function (e) {
+      e.preventDefault();
+      const taskId = Number($(this).data("task-id"));
+      const subId = Number($(this).data("sub-id"));
+      const subtaskName = $(this).data("subtask-name");
+
+      let data = JSON.parse(localStorage.getItem("user task")) || [];
+      if (!data[taskId] || !data[taskId].subtasks) return;
+
+      currentDeleteId = taskId;
+      currentSubtaskId = subId;
+      $("[id^=optionRd]").addClass("hidden");
+      openDeleteModal('subtask', subtaskName);
+    });
+
+    // Show dropdown options
     $(document).on("click", ".btnOption", function (e) {
       e.stopPropagation();
       const id = $(this).data("id");
@@ -197,7 +351,7 @@ define(["jquery"], function ($) {
       e.stopPropagation();
     });
 
-    // Rename handler (delegated) — this is fixed so modal opens reliably
+    // Rename handler
     $(document).on("click", "[id^=reNm]", function (e) {
       e.stopPropagation();
       const idAttr = $(this).attr("id");
@@ -205,7 +359,6 @@ define(["jquery"], function ($) {
       let data = JSON.parse(localStorage.getItem("user task")) || [];
       if (!data[id]) return;
       currentTaskId = id;
-      // hide option dropdown so it won't overlap the modal
       $("[id^=optionRd]").addClass("hidden");
       openRenameModal(data[id].taskName);
     });
@@ -228,28 +381,60 @@ define(["jquery"], function ($) {
       closeRenameModal();
     });
 
-    // Also close modal when clicking outside the box (overlay)
+    // Close modal when clicking outside
     $(document).on("click", "#renameModal", function (e) {
       if (e.target && e.target.id === "renameModal") {
         closeRenameModal();
       }
     });
 
-    // Delete handler (delegated)
+    // Delete handler
     $(document).on("click", "[id^=delTs]", function (e) {
       e.stopPropagation();
       const idAttr = $(this).attr("id");
       const id = Number(idAttr.replace("delTs", ""));
       let data = JSON.parse(localStorage.getItem("user task")) || [];
       if (!data[id]) return;
-      if (confirm("Yakin mau hapus task ini?")) {
-        data.splice(id, 1);
-        localStorage.setItem("user task", JSON.stringify(data));
-        renderTasks();
+      
+      currentDeleteId = id;
+      $("[id^=optionRd]").addClass("hidden");
+      openDeleteModal('task', data[id].taskName);
+    });
+
+    // Cancel delete
+    $(document).on("click", "#cancelDelete", function () {
+      closeDeleteModal();
+    });
+
+    // Confirm delete
+    $(document).on("click", "#confirmDelete", function () {
+      let data = JSON.parse(localStorage.getItem("user task")) || [];
+
+      if (currentDeleteType === 'task') {
+        if (data[currentDeleteId]) {
+          data.splice(currentDeleteId, 1);
+          localStorage.setItem("user task", JSON.stringify(data));
+          renderTasks();
+        }
+      } else if (currentDeleteType === 'subtask') {
+        if (data[currentDeleteId] && data[currentDeleteId].subtasks) {
+          data[currentDeleteId].subtasks.splice(currentSubtaskId, 1);
+          localStorage.setItem("user task", JSON.stringify(data));
+          renderTasks();
+        }
+      }
+
+      closeDeleteModal();
+    });
+
+    // Close delete modal when clicking outside
+    $(document).on("click", "#deleteModal", function (e) {
+      if (e.target && e.target.id === "deleteModal") {
+        closeDeleteModal();
       }
     });
 
-    // Expand/Collapse subtask (preserve id pattern & styling)
+    // Expand/Collapse subtask
     $(document).on("click", "[id^=btn-arrow1]", function () {
       const id = $(this).attr("id").replace("btn-arrow1", "");
       const $subtask = $(`#subtask${id}`);
@@ -260,7 +445,7 @@ define(["jquery"], function ($) {
       $arrow2.toggleClass("hidden");
     });
 
-    // Toggle list tugas selesai (footer)
+    // Toggle list tugas selesai
     $("#btn-arrowFoot").on("click", (e) => {
       e.preventDefault();
       $("#tComplete").toggleClass("block hidden");
@@ -272,118 +457,3 @@ define(["jquery"], function ($) {
     renderTasks();
   });
 });
-
-// $(document).ready(() =>{
-//   $('#btn-arrow1').on('click', (e)=>{
-//       e.preventDefault()
-//       $('#subtask').toggleClass('block hidden')
-//       $('#arrow1').toggleClass('hidden block')
-//       $('#arrow2').toggleClass('block hidden')
-//   })
-// })
-// $(document).ready(() =>{
-//   $('#btn-arrowFoot').on('click', (e)=>{
-//       e.preventDefault()
-//       $('#tComplete').toggleClass('block hidden')
-//       $('#btnFoot1').toggleClass('hidden block')
-//       $('#btnFoot2').toggleClass('block hidden')
-//   })
-// })
-
-//======================
-// `
-//           <div class="flex justify-between m-5 relative">
-//             <div class="flex gap-1">
-//               <div>
-//                 <input
-//                   id="check-${index}"
-//                   type="checkbox"
-//                   class="mt-1 appearance-none w-4 h-4 border-2 border-orange-500 rounded-full
-//                          checked:bg-orange-500 checked:border-orange-500
-//                          checked:[background-image:url('assets/icons/checked.svg')]
-//                          checked:bg-[length:70%_70%] bg-center bg-no-repeat cursor-pointer"
-//                 />
-//               </div>
-//               <div>
-//                 <div class="flex gap-1 mb-2">
-//                   <label for="check-${index}">${item.taskName}</label>
-//                   <div class="rounded-3xl bg-orange-100 flex items-center p-3 h-4 text-orange-500 gap-1 border text-xs">
-//                     ${item.taskDate}
-//                   </div>
-//                   <button class="btnOption" data-id="${index}">
-//                     <img src="assets/icons/more-vertical.png" alt="" />
-//                   </button>
-//                   <div
-//                     id="optionRd${index}"
-//                     class="border border-orange-500 text-orange-500 absolute top-8 z-5 right-0 md:left-40 rounded-md bg-orange-100 text-sm w-35 h-20 p-4 hidden"
-//                   >
-//                     <button id="reNm${index}" class="flex justify-between mb-2">
-//                       <img src="assets/icons/Edit.png" alt="" class="w-5" />
-//                       <p>Rename Task</p>
-//                     </button>
-//                     <button id="delTs${index}" class="flex gap-4">
-//                       <img src="assets/icons/Delete.png" alt="" class="w-3 h-4" />
-//                       <p>Delete task</p>
-//                     </button>
-//                   </div>
-//                 </div>
-//                 <div class="text-gray-400">${item.deskp}</div>
-//               </div>
-//             </div>
-//             <div id="btn-arrow1${index}">
-//               <button id="arrow1${index}">
-//                 <img src="assets/icons/Arrow - Down 1.png" alt="" class="w-6" />
-//               </button>
-//               <button id="arrow2${index}" class="hidden">
-//                 <img src="assets/icons/Arrow - Up 2.png" alt="" class="w-3 m-1" />
-//             </button>
-//           </div>
-//           </div>
-
-//           <div class="m-5 bg-gray-200 p-5 rounded-md hidden" id="subtask${index}">
-//            <div class="flex justify-between items-center mb-5">
-//              <div>
-//               <p>Subtask</p>
-//               </div>
-//               <div>
-//                 <button
-//                   class="rounded-3xl bg-white flex items-center p-2 text-orange-500 border h-8 text-xs"
-//                   >
-//                   <img src="assets/icons/Plus.png" alt="" class="w-3 mr-1" />
-//                   <div>Tambah</div>
-//                 </button>
-//               </div>
-//             </div>
-//           </div>
-//         `
-
-// // Rename Task
-// $(document).on("click", "[id^=reNm]", function () {
-//   const id = $(this).attr("id").replace("reNm", "");
-//   let data = JSON.parse(localStorage.getItem("user task")) || [];
-
-//   currentTaskId = id;
-//   $("#renameInput").val(data[id].taskName);
-//   $("#renameModal").removeClass("hidden");
-// });
-
-// $("#cancelRename").on("click", function () {
-//   $("#renameModal").addClass("hidden");
-//   currentTaskId = null;
-// });
-
-// $("#saveRename").on("click", function () {
-//   if (currentTaskId === null) return;
-
-//   let data = JSON.parse(localStorage.getItem("user task")) || [];
-//   const newName = $("#renameInput").val().trim();
-
-//   if (newName !== "") {
-//     data[currentTaskId].taskName = newName;
-//     localStorage.setItem("user task", JSON.stringify(data));
-//     renderTasks();
-//   }
-
-//   $("#renameModal").addClass("hidden");
-//   currentTaskId = null;
-// });

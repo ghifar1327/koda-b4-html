@@ -188,7 +188,7 @@
               <img src="assets/icons/Arrow - Up 2.png" alt="" class="w-3" />
             </button>
           </div>
-          <div id="doneCount">Terselesaikan (0 Tugas)</div>
+          <label for="btnFoot1" id="doneCount">Terselesaikan (0 Tugas)</label>
         </div>
 
         <!-- List tugas selesai -->
@@ -229,17 +229,20 @@
       </div>
     </div>
 
-    <!-- <div class="flex justify-between items-start">
-      <label for="check-s1" class="flex gap-2 cursor-pointer">
-        <input
-          id="check-s1"
-          type="checkbox"
-          class="peer mt-1 bg-white appearance-none w-4 h-4 border-2 border-orange-500 rounded-full checked:bg-orange-500 checked:border-orange-500 checked:[background-image:url('assets/icons/checked.svg')] checked:bg-[length:70%_70%] bg-center bg-no-repeat cursor-pointer"
-        />
-        <span class="peer-checked:line-through"> Design Renew </span>
-      </label>
-      <img src="assets/icons/trash.png" alt="" class="w-4 flex-shrink-0" />
-    </div> -->
+<div id="deleteModal" class="fixed inset-0 bg-opacity-50 flex items-center justify-center z-50 hidden">
+  <div id="deleteBox" class="bg-white rounded-lg shadow-xl p-6 w-96 transform transition-all duration-200 scale-95 opacity-0">
+    <h3 class="text-xl font-bold mb-4 text-gray-800">Konfirmasi Hapus</h3>
+    <p id="deleteMessage" class="text-gray-600 mb-6"></p>
+    <div class="flex gap-3 justify-end">
+      <button id="cancelDelete" class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-orange-600 transition">
+        Batal
+      </button>
+      <button id="confirmDelete" class="px-4 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition">
+        Hapus
+      </button>
+    </div>
+  </div>
+</div>
     <script
       data-main="assets/js/main"
       src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"
